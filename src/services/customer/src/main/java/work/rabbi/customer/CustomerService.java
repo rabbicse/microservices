@@ -3,7 +3,7 @@ package work.rabbi.customer;
 import org.springframework.stereotype.Service;
 
 @Service
-public record CustomerService() {
+public record CustomerService(CustomerRepository customerRepository) {
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
                 .firstName(request.firstName())
@@ -14,5 +14,7 @@ public record CustomerService() {
         // todo: check if email valid
         // todo: check if firstName valid
         // todo: check if lastName valid
+        // todo: store database
+        customerRepository.save(customer);
     }
 }
