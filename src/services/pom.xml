@@ -12,6 +12,9 @@
     <module>customer</module>
     <module>fraud</module>
     <module>eureka-server</module>
+      <module>notification</module>
+      <module>clients</module>
+      <module>amqp</module>
   </modules>
 
   <name>services</name>
@@ -54,6 +57,10 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-openfeign</artifactId>
     </dependency>
   </dependencies>
 
