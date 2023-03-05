@@ -15,3 +15,18 @@ services:
       - "27017"
     volumes:
       - ./mongo-data:/data/db
+
+  mysql:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'order-service'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'mysql'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3306:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+
