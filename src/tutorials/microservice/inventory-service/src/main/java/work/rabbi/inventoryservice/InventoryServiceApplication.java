@@ -3,11 +3,13 @@ package work.rabbi.inventoryservice;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import work.rabbi.inventoryservice.model.Inventory;
 import work.rabbi.inventoryservice.repository.InventoryRepository;
 
 @SpringBootApplication
+@EnableDiscoveryClient
 public class InventoryServiceApplication {
 
 	public static void main(String[] args) {
