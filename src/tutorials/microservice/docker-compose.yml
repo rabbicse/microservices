@@ -41,4 +41,17 @@ services:
     expose:
       # Opens port 3306 on the container
       - '3307'
+  keycloak:
+    image: quay.io/keycloak/keycloak
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '8088:8080'
+    expose:
+      # Opens port 3306 on the container
+      - '8088'
+    command:
+      - start-dev
 
