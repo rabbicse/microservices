@@ -6,7 +6,7 @@ services:
       #      - MONGO_INITDB_ROOT_USERNAME=mehmet
       #      - MONGO_INITDB_ROOT_PASSWORD=mehmet
       # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      # Here you are setting the username and password
+    # Here you are setting the username and password
     # so change it to whatever you want
     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     ports:
@@ -54,4 +54,9 @@ services:
       - '8088'
     command:
       - start-dev
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - "9411:9411"
 
