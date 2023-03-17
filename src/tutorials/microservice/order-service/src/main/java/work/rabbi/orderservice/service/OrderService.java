@@ -1,32 +1,40 @@
 package work.rabbi.orderservice.service;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
 import work.rabbi.orderservice.client.InventoryClient;
 import work.rabbi.orderservice.dto.InventoryResponse;
 import work.rabbi.orderservice.dto.OrderLineItemsDto;
 import work.rabbi.orderservice.dto.OrderRequest;
+import work.rabbi.orderservice.event.OrderPlacedEvent;
 import work.rabbi.orderservice.model.Order;
 import work.rabbi.orderservice.model.OrderLineItems;
 import work.rabbi.orderservice.repository.OrderRepository;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 @Transactional
 public class OrderService {
+
     private final OrderRepository orderRepository;
-    private final InventoryClient inventoryClient;
     private final WebClient.Builder webClientBuilder;
+    private final InventoryClient inventoryClient;
+    private final KafkaTemplate<String, OrderPlacedEvent> kafkaTemplate;
 
     public String placeOrder(OrderRequest orderRequest) {
+        log.info("sending notifications...");
+        kafkaTemplate.send("notificationTopic", new OrderPlacedEvent("test"));
+        log.info("Notification sent!");
+
         Order order = new Order();
         order.setOrderNumber(UUID.randomUUID().toString());
 
@@ -46,10 +54,11 @@ public class OrderService {
 //                .bodyToMono(InventoryResponse[].class)
 //                .block();
 
-        boolean allProductsInStock = inventoryClient.checkStock(skuCodes).stream().allMatch(InventoryResponse::isInStock);
+        boolean allProductsInStock = true;//inventoryClient.checkStock(skuCodes).stream().allMatch(InventoryResponse::isInStock);
 
         if (allProductsInStock) {
             orderRepository.save(order);
+            kafkaTemplate.send("notificationTopic", new OrderPlacedEvent(order.getOrderNumber()));
             return "Order Placed Successfully";
         } else {
             throw new IllegalArgumentException("Product is not in stock, please try again later");
