@@ -2,10 +2,10 @@ services:
   mongo:
     container_name: mongo
     image: mongo:latest
-      #    environment:
-      #      - MONGO_INITDB_ROOT_USERNAME=mehmet
-      #      - MONGO_INITDB_ROOT_PASSWORD=mehmet
-      # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    #    environment:
+    #      - MONGO_INITDB_ROOT_USERNAME=mehmet
+    #      - MONGO_INITDB_ROOT_PASSWORD=mehmet
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     # Here you are setting the username and password
     # so change it to whatever you want
     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -50,16 +50,20 @@ services:
   keycloak:
     image: quay.io/keycloak/keycloak
     environment:
+      PROXY_ADDRESS_FORWARDING: "true"
+      KC_HOSTNAME_STRICT: "false"
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
+      KEYCLOAK_FRONTEND_URL: http://localhost:8080/auth
+    volumes:
+      - ./realms/:/opt/keycloak/data/import/
     ports:
       # <Port exposed> : < MySQL Port running inside container>
       - '8088:8080'
     expose:
       # Opens port 3306 on the container
       - '8088'
-    command:
-      - start-dev
+    command: [ "start-dev", "--import-realm" ]
     networks:
       - spring-cloud-network
   zipkin:
@@ -67,6 +71,8 @@ services:
     container_name: zipkin
     ports:
       - "9411:9411"
+    networks:
+      - spring-cloud-network
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     container_name: zookeeper
@@ -157,14 +163,29 @@ services:
       dockerfile: Dockerfile
     image: api-gateway:latest
     restart: always
-#    environment:
-#      eureka_client_serviceUrl_defaultZone: "http://eureka:password@discovery-server:8761/eureka"
-#      spring_security_oauth2_resourceserver_jwt_issuer-uri: "http://keycloak:8088/realms/spring-boot-microservices-realm"
+    environment:
+      eureka_client_serviceUrl_defaultZone: http://eureka:password@discovery-server:8761/eureka
+      spring_cloud_gateway_routes[0]_id: product-service
+      spring_cloud_gateway_routes[0]_uri: lb://product-service
+      spring_cloud_gateway_routes[0]_predicates[0]: Path=/api/product
+      spring_cloud_gateway_routes[1]_id: order-service
+      spring_cloud_gateway_routes[1]_uri: lb://order-service
+      spring_cloud_gateway_routes[1]_predicates[0]: Path=/api/order
+      spring_cloud_gateway_routes[2]_id: discovery-server
+      spring_cloud_gateway_routes[2]_uri: http://discovery-server:8761
+      spring_cloud_gateway_routes[2]_predicates[0]: Path=/eureka/web
+      spring_cloud_gateway_routes[2]_filters[0]: SetPath=/
+      spring_cloud_gateway_routes[3]_id: discovery-server-static
+      spring_cloud_gateway_routes[3]_uri: http://discovery-server:8761
+      spring_cloud_gateway_routes[3]_predicates[0]: Path=/eureka/**
+      spring_security_oauth2_resourceserver_jwt_issuer-uri: http://keycloak:8080/realms/spring-boot-microservices-realm
     ports:
       - 8000:8000
     depends_on:
       - keycloak
       - discovery-server
+    networks:
+      - spring-cloud-network
 networks:
   spring-cloud-network:
     driver: bridge
