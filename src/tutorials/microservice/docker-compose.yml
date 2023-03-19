@@ -15,6 +15,8 @@ services:
       - "27017"
     volumes:
       - ./mongo-data:/data/db
+    networks:
+      - spring-cloud-network
   mysql-order:
     image: mysql
     restart: always
@@ -28,6 +30,8 @@ services:
     expose:
       # Opens port 3306 on the container
       - '3306'
+    networks:
+      - spring-cloud-network
   mysql-inventory:
     image: mysql
     restart: always
@@ -41,6 +45,8 @@ services:
     expose:
       # Opens port 3306 on the container
       - '3307'
+    networks:
+      - spring-cloud-network
   keycloak:
     image: quay.io/keycloak/keycloak
     environment:
@@ -54,6 +60,8 @@ services:
       - '8088'
     command:
       - start-dev
+    networks:
+      - spring-cloud-network
   zipkin:
     image: openzipkin/zipkin
     container_name: zipkin
@@ -65,12 +73,13 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
-
+    networks:
+      - spring-cloud-network
   broker:
     image: confluentinc/cp-kafka:latest
     container_name: broker
     ports:
-      - "9092:9092"
+      - 9092:9092
     depends_on:
       - zookeeper
     environment:
@@ -81,4 +90,82 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+    networks:
+      - spring-cloud-network
+  product-service:
+    container_name: product-service
+    build:
+      context: product-service
+      dockerfile: Dockerfile
+    image: product-service:latest
+    ports:
+      - 9080:8080
+    networks:
+      - spring-cloud-network
+  order-service:
+    container_name: order-service
+    build:
+      context: order-service
+      dockerfile: Dockerfile
+    image: order-service:latest
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-order:3306/order-service
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: mysql
+      eureka_client_serviceUrl_defaultZone: "http://eureka:password@discovery-server:8761/eureka"
+    ports:
+      - 9081:8081
+    depends_on:
+      - mysql-order
+      - discovery-server
+    networks:
+      - spring-cloud-network
+  inventory-service:
+    container_name: inventory-service
+    build:
+      context: inventory-service
+      dockerfile: Dockerfile
+    image: inventory-service:latest
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-inventory:3306/inventory-service
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: mysql
+      EUREKA_client_serviceUrl_defaultZone: "http://eureka:password@discovery-server:8761/eureka"
+    ports:
+      - 9082:8082
+    depends_on:
+      - mysql-inventory
+      - discovery-server
+    networks:
+      - spring-cloud-network
+  discovery-server:
+    container_name: discovery-server
+    build:
+      context: discovery-server
+      dockerfile: Dockerfile
+    image: discovery-server:latest
+    ports:
+      - 8761:8761
+    networks:
+      - spring-cloud-network
+  api-gateway:
+    container_name: api-gateway
+    build:
+      context: api-gateway
+      dockerfile: Dockerfile
+    image: api-gateway:latest
+    restart: always
+#    environment:
+#      eureka_client_serviceUrl_defaultZone: "http://eureka:password@discovery-server:8761/eureka"
+#      spring_security_oauth2_resourceserver_jwt_issuer-uri: "http://keycloak:8088/realms/spring-boot-microservices-realm"
+    ports:
+      - 8000:8000
+    depends_on:
+      - keycloak
+      - discovery-server
+networks:
+  spring-cloud-network:
+    driver: bridge
 
