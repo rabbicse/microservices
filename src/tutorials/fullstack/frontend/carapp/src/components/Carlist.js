@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
 import React from "react";
+import { SERVER_URL } from "../constants.js";
+import { DataGrid } from "@mui/x-data-grid";
+
+const columns = [
+  { field: "brand", headerName: "Brand", width: 200 },
+  { field: "model", headerName: "Model", width: 200 },
+  { field: "color", headerName: "Color", width: 200 },
+  { field: "year", headerName: "Year", width: 150 },
+  { field: "price", headerName: "Price", width: 150 },
+];
 
 function Carlist() {
   const [cars, setCars] = useState([]);
   useEffect(() => {
-    fetch(
-      "http://localhost:8080/api/v1/cars",
-      { crossDomain: true, method: "GET" }
-    )
+    fetch(SERVER_URL + "api/v1/cars")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -22,19 +29,13 @@ function Carlist() {
     <div>
       <h1>Hello list</h1>
 
-      <table>
-        <tbody>
-          {cars.map((car, index) => (
-            <tr key={index}>
-              <td>{car.brand}</td>
-              <td>{car.model}</td>
-              <td>{car.color}</td>
-              <td>{car.year}</td>
-              <td>{car.price}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div style={{ height: 500, width: '100%' }}>
+        <DataGrid
+          rows={cars}
+          columns={columns}
+          getRowId={(row) => row}
+        />
+      </div>
     </div>
   );
 }

@@ -9,3 +9,9 @@ spring:
     console:
       enabled: true
       path:  /h2-console
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+  data:
+    rest:
+      basePath: /api/v1
