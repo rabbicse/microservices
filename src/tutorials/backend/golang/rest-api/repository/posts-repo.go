@@ -4,9 +4,9 @@ import (
 	"context"
 	"log"
 
-	"../entity"
 	"cloud.google.com/go/firestore"
 	"github.com/rabbicse/microservices/tree/master/src/tutorials/backend/golang/rest-api/entity"
+	"google.golang.org/api/iterator"
 )
 
 type PostRepository interface {
@@ -21,7 +21,7 @@ func NewPostRepository() PostRepository {
 }
 
 const (
-	projectId      string = "microservices"
+	projectId      string = "microservices-cd2fa"
 	collectionName string = "posts"
 )
 
@@ -49,7 +49,7 @@ func (*repo) Save(post *entity.Post) (*entity.Post, error) {
 	return post, nil
 }
 
-func FindAll() ([]entity.Post, error) {
+func (*repo) FindAll() ([]entity.Post, error) {
 	ctx := context.Background()
 	client, err := firestore.NewClient(ctx, projectId)
 	if err != nil {
@@ -58,13 +58,27 @@ func FindAll() ([]entity.Post, error) {
 	}
 
 	defer client.Close()
-	var post []entity.Post
-	iterator := client.Collection(collectionName).Documents(ctx)
+
+	var posts []entity.Post
+	iter := client.Collection(collectionName).Documents(ctx)
 	for {
-		doc, err := iterator.Next()
+		doc, err := iter.Next()
+		if err == iterator.Done {
+			break
+		}
 		if err != nil {
 			log.Fatalf("Failed to create a Firestore Client: %v", err)
 			return nil, err
 		}
+
+		post := entity.Post{
+			ID:    doc.Data()["ID"].(int64),
+			Title: doc.Data()["Title"].(string),
+			Text:  doc.Data()["Text"].(string),
+		}
+
+		posts = append(posts, post)
 	}
+	return posts, nil
+
 }
