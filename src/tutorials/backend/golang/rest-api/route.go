@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	repo repository.PostRepository = repository.NewPostRepository()
+	repo repository.PostRepository = repository.NewFirestoreRepository()
 )
 
 func getPosts(resp http.ResponseWriter, req *http.Request) {

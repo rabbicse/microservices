@@ -2,21 +2,28 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 
-	"github.com/gorilla/mux"
+	"github.com/rabbicse/microservices/tree/master/src/tutorials/backend/golang/rest-api/controller"
+	router "github.com/rabbicse/microservices/tree/master/src/tutorials/backend/golang/rest-api/http"
+	"github.com/rabbicse/microservices/tree/master/src/tutorials/backend/golang/rest-api/repository"
+	"github.com/rabbicse/microservices/tree/master/src/tutorials/backend/golang/rest-api/service"
+)
+
+var (
+	postRepository repository.PostRepository = repository.NewFirestoreRepository()
+	postService    service.PostService       = service.NewPostService(postRepository)
+	postController controller.PostController = controller.NewPostController(postService)
+	httpRouter     router.Router             = router.NewChiRouter()
 )
 
 func main() {
-	router := mux.NewRouter()
 	const port string = ":8000"
-	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	httpRouter.GET("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "Up and running")
 	})
-	router.HandleFunc("/posts", getPosts).Methods("GET")
-	router.HandleFunc("/posts", addPost).Methods("POST")
+	httpRouter.GET("/posts", postController.GetPosts)
+	httpRouter.POST("/posts", postController.AddPost)
 
-	log.Println("Server listening on port", port)
-	log.Fatal(http.ListenAndServe(port, router))
+	httpRouter.SERVE(port)
 }
