@@ -21,13 +21,14 @@ var (
 
 func main() {
 	const port string = ":8000"
+
 	httpRouter.GET("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "Up and running")
 	})
 	httpRouter.GET("/posts", postController.GetPosts)
 	httpRouter.POST("/posts", postController.AddPost)
-
 	httpRouter.GET("/carDetails", carDetailsController.GetCarDetails)
 
 	httpRouter.SERVE(port)
+	// httpRouter.SERVE(os.Getenv("PORT"))
 }
