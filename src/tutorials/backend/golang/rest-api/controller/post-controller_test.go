@@ -8,6 +8,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/rabbicse/microservices/tree/master/src/tutorials/backend/golang/rest-api/cache"
 	"github.com/rabbicse/microservices/tree/master/src/tutorials/backend/golang/rest-api/entity"
 	"github.com/rabbicse/microservices/tree/master/src/tutorials/backend/golang/rest-api/repository"
 	"github.com/rabbicse/microservices/tree/master/src/tutorials/backend/golang/rest-api/service"
@@ -17,7 +18,8 @@ import (
 var (
 	postRepo       repository.PostRepository = repository.NewSQLiteRepository()
 	postSrv        service.PostService       = service.NewPostService(postRepo)
-	postController PostController            = NewPostController(postSrv)
+	postCacheSrv   cache.PostCache           = cache.NewRedisCache("localhost:6379", 0, 10)
+	postController PostController            = NewPostController(postSrv, postCacheSrv)
 )
 
 func TestAddPost(t *testing.T) {

@@ -26,6 +26,7 @@ func main() {
 		fmt.Fprintln(w, "Up and running")
 	})
 	httpRouter.GET("/posts", postController.GetPosts)
+	httpRouter.GET("/posts", postController.GetPosts)
 	httpRouter.POST("/posts", postController.AddPost)
 	httpRouter.GET("/carDetails", carDetailsController.GetCarDetails)
 
