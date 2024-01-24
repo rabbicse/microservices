@@ -28,24 +28,24 @@ export const login = async (
 
   const { email, password, code } = validatedFields.data;
 
-//   const existingUser = await getUserByEmail(email);
+  //   const existingUser = await getUserByEmail(email);
 
-//   if (!existingUser || !existingUser.email || !existingUser.password) {
-//     return { error: "Email does not exist!" };
-//   }
+  //   if (!existingUser || !existingUser.email || !existingUser.password) {
+  //     return { error: "Email does not exist!" };
+  //   }
 
-//   if (!existingUser.emailVerified) {
-//     const verificationToken = await generateVerificationToken(
-//       existingUser.email
-//     );
+  //   if (!existingUser.emailVerified) {
+  //     const verificationToken = await generateVerificationToken(
+  //       existingUser.email
+  //     );
 
-//     await sendVerificationEmail(
-//       verificationToken.email,
-//       verificationToken.token
-//     );
+  //     await sendVerificationEmail(
+  //       verificationToken.email,
+  //       verificationToken.token
+  //     );
 
-//     return { success: "Confirmation email sent!" };
-//   }
+  return { success: "Confirmation email sent!" };
+};
 
 //   if (existingUser.isTwoFactorEnabled && existingUser.email) {
 //     if (code) {
@@ -110,4 +110,4 @@ export const login = async (
 
 //     throw error;
 //   }
-};
+// };
