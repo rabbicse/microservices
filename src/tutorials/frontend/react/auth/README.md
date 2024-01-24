@@ -1,7 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Authentication and Authorization
 
-## Getting Started
+## Installation
 
+## Init nextjs project
+```
+npx create-next-app@latest auth  
+```
+
+## Shadcn UI
+```
+npx shadcn-ui@latest init
+npx shadcn-ui@latest add button
+npx shadcn-ui@latest add card
+npx shadcn-ui@latest add form
+npx shadcn-ui@latest add input
+```
+
+## React Icons
+```
+npm i react-icons
+```
+
+## Zod
+```
+npm install zod
+```
+
+
+## Prisma
+```
+npm i -D prisma
+npm i @prisma/client
+npm install @auth/prisma-adapter
+npx prisma init
+npx prisma generate
+npx prisma db push
+```
+
+## Next Auth
+```
+npm install next-auth
+```
+
+## Bcrypt
+```
+npm i bcrypt
+npm i -D @types/bcrypt
+```
+
+# Run
 First, run the development server:
 
 ```bash
