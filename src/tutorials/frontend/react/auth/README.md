@@ -46,6 +46,22 @@ npm install next-auth
 ```
 npm i bcrypt
 npm i -D @types/bcrypt
+npm i bcryptjs
+npm i -D @types/bcryptjs
+```
+
+## UUID
+```
+npm i uuid
+npm i --save-dev @types/uuid
+```
+
+# Useful commands
+
+## Open prisma studio
+```
+npx prisma studio
+npx prisma migrate reset
 ```
 
 # Run

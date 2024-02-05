@@ -10,10 +10,10 @@ import { getUserByEmail } from "@/data/user";
 // import { getTwoFactorTokenByEmail } from "@/data/two-factor-token";
 // import { sendVerificationEmail, sendTwoFactorTokenEmail } from "@/lib/mail";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
-// import {
-//   generateVerificationToken,
-//   generateTwoFactorToken,
-// } from "@/lib/tokens";
+import {
+  generateVerificationToken,
+  // generateTwoFactorToken,
+} from "@/lib/tokens";
 // import { getTwoFactorConfirmationByUserId } from "@/data/two-factor-confirmation";
 
 export const login = async (
@@ -34,10 +34,10 @@ export const login = async (
     return { error: "Email does not exist!" };
   }
 
-  //   if (!existingUser.emailVerified) {
-  //     const verificationToken = await generateVerificationToken(
-  //       existingUser.email
-  //     );
+    if (!existingUser.emailVerified) {
+      const verificationToken = await generateVerificationToken(
+        existingUser.email
+      );}
 
   //     await sendVerificationEmail(
   //       verificationToken.email,
