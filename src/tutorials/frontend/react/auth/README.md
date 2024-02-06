@@ -64,6 +64,14 @@ npx prisma studio
 npx prisma migrate reset
 ```
 
+## Setup resend
+Go to https://resend.com to get started
+
+Install resend package
+```
+npm install resend
+```
+
 # Run
 First, run the development server:
 
