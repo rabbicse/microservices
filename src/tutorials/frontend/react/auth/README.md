@@ -3,11 +3,13 @@
 ## Installation
 
 ## Init nextjs project
+
 ```
-npx create-next-app@latest auth  
+npx create-next-app@latest auth
 ```
 
 ## Shadcn UI
+
 ```
 npx shadcn-ui@latest init
 npx shadcn-ui@latest add button
@@ -17,17 +19,19 @@ npx shadcn-ui@latest add input
 ```
 
 ## React Icons
+
 ```
 npm i react-icons
 ```
 
 ## Zod
+
 ```
 npm install zod
 ```
 
-
 ## Prisma
+
 ```
 npm i -D prisma
 npm i @prisma/client
@@ -38,11 +42,13 @@ npx prisma db push
 ```
 
 ## Next Auth
+
 ```
 npm install next-auth
 ```
 
 ## Bcrypt
+
 ```
 npm i bcrypt
 npm i -D @types/bcrypt
@@ -51,28 +57,49 @@ npm i -D @types/bcryptjs
 ```
 
 ## UUID
+
 ```
 npm i uuid
 npm i --save-dev @types/uuid
 ```
 
+## react-spinners
+```
+npm install react-spinners
+```
+
 # Useful commands
 
 ## Open prisma studio
+
 ```
 npx prisma studio
+```
+
+Now visit the following url with default port: 5555
+
+```
+http://localhost:5555
+```
+
+To migrate schema write the following command.
+
+```
 npx prisma migrate reset
 ```
 
 ## Setup resend
+
 Go to https://resend.com to get started
 
 Install resend package
+
 ```
 npm install resend
 ```
 
 # Run
+
 First, run the development server:
 
 ```bash

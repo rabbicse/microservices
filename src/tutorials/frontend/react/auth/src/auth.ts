@@ -13,10 +13,13 @@ export const {
 } = NextAuth({
   callbacks: {
     async signIn({ user, account }) {
+      console.log({ user, account });
       // Allow OAuth without email verification
       if (account?.provider !== "credentials") return true;
 
       const existingUser = await getUserById(user.id);
+
+      console.log(existingUser);
 
       // Prevent sign in without email verification
       if (!existingUser?.emailVerified) return false;
@@ -42,9 +45,9 @@ export const {
         session.user.id = token.sub;
       }
 
-        if (token.role && session.user) {
-          session.user.role = token.role as UserRole;
-        }
+      if (token.role && session.user) {
+        session.user.role = token.role as UserRole;
+      }
 
       //   if (session.user) {
       //     session.user.isTwoFactorEnabled = token.isTwoFactorEnabled as boolean;
