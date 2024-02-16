@@ -3,7 +3,7 @@
 import * as z from "zod";
 import bcrypt from "bcryptjs";
 
-import { update } from "@/auth";
+import { unstable_update } from "@/auth";
 import { db } from "@/lib/db";
 import { SettingsSchema } from "@/schemas";
 import { getUserByEmail, getUserById } from "@/data/user";
@@ -18,7 +18,7 @@ export const settings = async (values: z.infer<typeof SettingsSchema>) => {
     return { error: "Unauthorized" };
   }
 
-  const dbUser = await getUserById(user.id);
+  const dbUser = await getUserById(user.id as string);
 
   if (!dbUser) {
     return { error: "Unauthorized" };
@@ -69,7 +69,7 @@ export const settings = async (values: z.infer<typeof SettingsSchema>) => {
     },
   });
 
-  update({
+  unstable_update({
     user: {
       name: updatedUser.name,
       email: updatedUser.email,

@@ -22,6 +22,7 @@ npx shadcn-ui@latest add select
 npx shadcn-ui@latest add dropdown-menu
 npx shadcn-ui@latest add avatar
 npx shadcn-ui@latest add badge
+npx shadcn-ui@latest add dialog
 ```
 
 ## React Icons
@@ -117,6 +118,12 @@ yarn dev
 pnpm dev
 # or
 bun dev
+```
+
+## Build
+To build for production deployment write the following command
+```
+npm run build
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
