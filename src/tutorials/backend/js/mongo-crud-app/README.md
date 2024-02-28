@@ -25,3 +25,39 @@ Open the terminal and write the following command
 ```
 npm install mongoose
 ```
+
+### Install dotenv
+Open the terminal and write the following command
+```
+npm install dotenv
+```
+
+### Install express-openapi
+Open the terminal and write the following command
+```
+npm install express-openapi
+```
+
+### Install swagger-ui-express
+Open the terminal and write the following command
+```
+npm i swagger-ui-express
+```
+
+### Install swagger-jsdoc
+Open the terminal and write the following command
+```
+npm i swagger-jsdoc
+```
+
+### Install swagger-autogen
+Open the terminal and write the following command
+```
+npm i swagger-autogen
+```
+
+## Dockerize application
+Open terminal and run the following command to create docker image
+```
+docker build -t <imagename> .
+```
