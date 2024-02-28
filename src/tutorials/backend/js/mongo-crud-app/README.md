@@ -13,3 +13,15 @@ Open the terminal and write the following command
 ```
 npm i nodemon
 ```
+
+### Install Mongodb
+Open the terminal and write the following command
+```
+npm i mongodb
+```
+
+### Install Mongoose
+Open the terminal and write the following command
+```
+npm install mongoose
+```
