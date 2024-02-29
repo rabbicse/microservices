@@ -1,4 +1,5 @@
-﻿using Ordering.Domain.Common;
+﻿using Ordering.Domain.Aggregates.OrderAggregate;
+using Ordering.Domain.Common;
 
 namespace Ordering.Domain.Interfaces
 {
