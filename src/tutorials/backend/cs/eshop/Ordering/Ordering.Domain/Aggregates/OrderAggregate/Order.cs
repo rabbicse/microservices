@@ -1,4 +1,8 @@
-﻿using Ordering.Domain.Common;
+﻿using Ordering.Domain.Aggregates.BuyerAggregate;
+using Ordering.Domain.Common;
+using Ordering.Domain.Enums;
+using Ordering.Domain.Events;
+using Ordering.Domain.Exceptions;
 using Ordering.Domain.ValueObjects;
 using System.ComponentModel.DataAnnotations;
 

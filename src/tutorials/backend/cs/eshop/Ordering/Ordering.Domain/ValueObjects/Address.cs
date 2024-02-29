@@ -1,4 +1,6 @@
-﻿namespace Ordering.Domain.ValueObjects
+﻿using Ordering.Domain.Common;
+
+namespace Ordering.Domain.ValueObjects
 {
     public class Address : ValueObject
     {

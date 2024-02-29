@@ -1,10 +1,13 @@
-﻿namespace Ordering.Domain.Common
+﻿using MediatR;
+
+namespace Ordering.Domain.Common
 {
     /// <summary>
     /// Similar to INotification from MediatR
     /// Add this interface to get rid from another MediatR dependency to project 
+    /// TODO: need to optimize later
     /// </summary>
-    public interface IDomainEvent
+    public interface IDomainEvent : INotification
     {
     }
 }
