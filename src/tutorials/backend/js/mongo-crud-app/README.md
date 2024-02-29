@@ -61,3 +61,8 @@ Open terminal and run the following command to create docker image
 ```
 docker build -t <imagename> .
 ```
+
+To run image on docker container run the following command
+```
+docker run -it -d --rm -p 8080:3000 mongo-crud-app
+```
