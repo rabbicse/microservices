@@ -4,8 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Ordering.Domain.Aggregates.OrderAggregate
 {
-    public class OrderItem
-        : Entity
+    public class OrderItem : Entity
     {
         [Required]
         public string ProductName { get; private set; }

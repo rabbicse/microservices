@@ -1,11 +1,6 @@
 ﻿using MediatR;
 using Ordering.Application.UseCases.Orders.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ordering.Application.UseCases.Orders.Commands
 {
@@ -25,40 +20,40 @@ namespace Ordering.Application.UseCases.Orders.Commands
         private readonly List<OrderItemDTO> _orderItems;
 
         [DataMember]
-        public string UserId { get; private set; }
+        public string UserId { get; set; }
 
         [DataMember]
-        public string UserName { get; private set; }
+        public string UserName { get; set; }
 
         [DataMember]
-        public string City { get; private set; }
+        public string City { get; set; }
 
         [DataMember]
-        public string Street { get; private set; }
+        public string Street { get; set; }
 
         [DataMember]
-        public string State { get; private set; }
+        public string State { get; set; }
 
         [DataMember]
-        public string Country { get; private set; }
+        public string Country { get; set; }
 
         [DataMember]
-        public string ZipCode { get; private set; }
+        public string ZipCode { get; set; }
 
         [DataMember]
-        public string CardNumber { get; private set; }
+        public string CardNumber { get; set; }
 
         [DataMember]
-        public string CardHolderName { get; private set; }
+        public string CardHolderName { get; set; }
 
         [DataMember]
-        public DateTime CardExpiration { get; private set; }
+        public DateTime CardExpiration { get; set; }
 
         [DataMember]
-        public string CardSecurityNumber { get; private set; }
+        public string CardSecurityNumber { get; set; }
 
         [DataMember]
-        public int CardTypeId { get; private set; }
+        public int CardTypeId { get; set; }
 
         [DataMember]
         public IEnumerable<OrderItemDTO> OrderItems => _orderItems;
