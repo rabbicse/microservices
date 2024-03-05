@@ -1,4 +1,4 @@
-FROM node:lts
+FROM node:latest
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -14,5 +14,5 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-EXPOSE 8080
+EXPOSE 3000
 CMD [ "node", "server.js" ]
