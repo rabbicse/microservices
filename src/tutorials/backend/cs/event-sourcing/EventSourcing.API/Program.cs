@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,8 +15,14 @@ builder.Services.AddDbContextPool<AppDbContext>(db => db.UseSqlite(connectionStr
 
 
 // Register post information service
-builder.Services.AddScoped<IPostInformationCommand, PostInformationCommandHandler>();
-builder.Services.AddScoped<IPostInformationQuery, PostInformationQuery>();
+builder.Services.AddScoped<IPostInformationCommandService, PostInformationCommandService>();
+builder.Services.AddScoped<IPostInformationQueryService, PostInformationQueryService>();
+
+// Register AutoMapper
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+// Register MediatR
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
 var app = builder.Build();
 

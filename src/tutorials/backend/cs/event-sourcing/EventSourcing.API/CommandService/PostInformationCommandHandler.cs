@@ -1,8 +1,8 @@
-public class PostInformationCommandHandler : IPostInformationCommand
+public class PostInformationCommandService : IPostInformationCommandService
 {
     private readonly AppDbContext _dbContext;
 
-    public PostInformationCommandHandler(AppDbContext dbContext)
+    public PostInformationCommandService(AppDbContext dbContext)
     {
         _dbContext = dbContext;
     }

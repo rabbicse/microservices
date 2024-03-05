@@ -1,8 +1,8 @@
-public class PostInformationQuery : IPostInformationQuery
+public class PostInformationQueryService : IPostInformationQueryService
 {
     private readonly AppDbContext _dbContext;
 
-    public PostInformationQuery(AppDbContext dbContext)
+    public PostInformationQueryService(AppDbContext dbContext)
     {
         _dbContext = dbContext;
     }

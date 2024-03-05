@@ -1,4 +1,4 @@
-public interface IPostInformationQuery
+public interface IPostInformationQueryService
 {
     IEnumerable<PostInformation> GetAllPosts();
     PostInformation GetById(string id);

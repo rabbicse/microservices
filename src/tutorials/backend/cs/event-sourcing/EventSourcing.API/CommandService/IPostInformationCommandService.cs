@@ -1,4 +1,4 @@
-public interface IPostInformationCommand
+public interface IPostInformationCommandService
 {
     Task<PostInformation> AddAsync(PostInformation postInformation);
 
