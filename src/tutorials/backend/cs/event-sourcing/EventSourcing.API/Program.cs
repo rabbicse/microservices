@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using AutoMapper;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -19,10 +19,11 @@ builder.Services.AddScoped<IPostInformationCommandService, PostInformationComman
 builder.Services.AddScoped<IPostInformationQueryService, PostInformationQueryService>();
 
 // Register AutoMapper
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+// builder.Services.AddAutoMapper(typeof(Program).Assembly);
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 // Register MediatR
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(System.Reflection.Assembly.GetExecutingAssembly()));
 
 var app = builder.Build();
 
