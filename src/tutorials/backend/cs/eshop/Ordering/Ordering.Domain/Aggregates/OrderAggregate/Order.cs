@@ -5,6 +5,7 @@ using Ordering.Domain.Events;
 using Ordering.Domain.Exceptions;
 using Ordering.Domain.ValueObjects;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ordering.Domain.Aggregates.OrderAggregate
 {
@@ -14,6 +15,7 @@ namespace Ordering.Domain.Aggregates.OrderAggregate
 
         // Address is a Value Object pattern example persisted as EF Core 2.0 owned entity
         [Required]
+        [NotMapped]
         public Address Address { get; private set; }
 
         public int? BuyerId { get; private set; }
@@ -22,7 +24,7 @@ namespace Ordering.Domain.Aggregates.OrderAggregate
 
         public OrderStatus OrderStatus { get; private set; }
 
-        public string Description { get; private set; }
+        public string Description { get; private set; } = "N/A";
 
         // DDD Patterns comment
         // Using a private collection field, better for DDD Aggregate's encapsulation
