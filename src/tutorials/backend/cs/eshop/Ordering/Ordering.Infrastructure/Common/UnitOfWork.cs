@@ -25,21 +25,26 @@ namespace Ordering.Write.Infrastructure.Common
 
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
         {
-            using (var transaction = await (_dbContext as DbContext).Database.BeginTransactionAsync(cancellationToken))
+            if (_dbContext is DbContext context)
             {
-                try
+                using (var transaction = await context.Database.BeginTransactionAsync(cancellationToken))
                 {
-                    var affectedRows = await _dbContext.SaveChangesAsync(cancellationToken);
-                    await transaction.CommitAsync(cancellationToken);
-                    return await Task.FromResult(true);
-                }
-                catch (Exception ex)
-                {
-                    await transaction.RollbackAsync();
-                    //throw ex.InnerException;
-                    return await Task.FromResult(false);
+                    try
+                    {
+                        var affectedRows = await _dbContext.SaveChangesAsync(cancellationToken);
+                        await transaction.CommitAsync(cancellationToken);
+                        return await Task.FromResult(true);
+                    }
+                    catch (Exception ex)
+                    {
+                        await transaction.RollbackAsync();
+                        //throw ex.InnerException;
+                        return await Task.FromResult(false);
+                    }
                 }
             }
+
+            return await Task.FromResult(false);
         }
 
         ///// <summary>
