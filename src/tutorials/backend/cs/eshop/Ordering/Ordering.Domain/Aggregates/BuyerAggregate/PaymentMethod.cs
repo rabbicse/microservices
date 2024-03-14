@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Ordering.Domain.Aggregates.BuyerAggregate
 {
-    public class PaymentMethod : Entity
+    public class PaymentMethod : BaseEntity
     {
         [Required]
         private string _alias;

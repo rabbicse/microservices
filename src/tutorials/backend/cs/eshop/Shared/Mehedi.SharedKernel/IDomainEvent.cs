@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Ordering.Domain.Common
+namespace Mehedi.Core.SharedKernel
 {
     /// <summary>
     /// Similar to INotification from MediatR

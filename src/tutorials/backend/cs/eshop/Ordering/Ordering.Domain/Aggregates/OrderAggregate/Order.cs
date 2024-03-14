@@ -1,5 +1,5 @@
-﻿using Ordering.Domain.Aggregates.BuyerAggregate;
-using Ordering.Domain.Common;
+﻿using Mehedi.Core.SharedKernel;
+using Ordering.Domain.Aggregates.BuyerAggregate;
 using Ordering.Domain.Enums;
 using Ordering.Domain.Events;
 using Ordering.Domain.Exceptions;
@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ordering.Domain.Aggregates.OrderAggregate
 {
-    public class Order : Entity, IAggregateRoot
+    public class Order : BaseEntity, IAggregateRoot
     {
         public DateTime OrderDate { get; private set; }
 
@@ -92,7 +92,7 @@ namespace Ordering.Domain.Aggregates.OrderAggregate
         {
             if (OrderStatus == OrderStatus.Submitted)
             {
-                AddDomainEvent(new OrderStatusChangedToAwaitingValidationDomainEvent(Id, _orderItems));
+                AddDomainEvent(new OrderStatusChangedToAwaitingValidationDomainEvent<Guid>(Id, _orderItems));
                 OrderStatus = OrderStatus.AwaitingValidation;
             }
         }
@@ -101,7 +101,7 @@ namespace Ordering.Domain.Aggregates.OrderAggregate
         {
             if (OrderStatus == OrderStatus.AwaitingValidation)
             {
-                AddDomainEvent(new OrderStatusChangedToStockConfirmedDomainEvent(Id));
+                AddDomainEvent(new OrderStatusChangedToStockConfirmedDomainEvent<Guid>(Id));
 
                 OrderStatus = OrderStatus.StockConfirmed;
                 Description = "All the items were confirmed with available stock.";

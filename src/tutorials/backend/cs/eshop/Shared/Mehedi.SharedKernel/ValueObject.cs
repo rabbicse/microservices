@@ -1,4 +1,4 @@
-﻿namespace Ordering.Domain.Common
+﻿namespace Mehedi.Core.SharedKernel
 {
     public abstract class ValueObject
     {

@@ -1,4 +1,4 @@
-﻿namespace Ordering.Domain.Common
+﻿namespace Mehedi.Core.SharedKernel
 {
     /// <summary>
     /// Represents a repository for storing events in an event store.

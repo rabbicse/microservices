@@ -1,4 +1,4 @@
-﻿namespace Ordering.Domain.Common
+﻿namespace Mehedi.Core.SharedKernel
 {
     public interface IRepository<T> where T : IAggregateRoot
     {

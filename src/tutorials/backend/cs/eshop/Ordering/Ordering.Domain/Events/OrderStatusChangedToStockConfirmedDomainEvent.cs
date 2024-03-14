@@ -1,16 +1,12 @@
-﻿using Ordering.Domain.Common;
+﻿using Mehedi.Core.SharedKernel;
 
 namespace Ordering.Domain.Events
 {
     /// <summary>
     /// Event used when the order stock items are confirmed
     /// </summary>
-    public class OrderStatusChangedToStockConfirmedDomainEvent
-        : IDomainEvent
+    public class OrderStatusChangedToStockConfirmedDomainEvent<T>(T orderId) : BaseEvent
     {
-        public int OrderId { get; }
-
-        public OrderStatusChangedToStockConfirmedDomainEvent(int orderId)
-            => OrderId = orderId;
+        public T OrderId { get; } = orderId;
     }
 }

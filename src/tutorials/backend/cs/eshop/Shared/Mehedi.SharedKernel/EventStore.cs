@@ -1,9 +1,9 @@
-﻿namespace Ordering.Domain.Common
+﻿namespace Mehedi.Core.SharedKernel
 {
     /// <summary>
     /// Represents the event store for storing events.
     /// </summary>
-    public class EventStore : BaseEvent
+    public class EventStore : BaseDomainEvent
     {
         /// <summary>
         /// Initializes a new instance of the EventStore class.
