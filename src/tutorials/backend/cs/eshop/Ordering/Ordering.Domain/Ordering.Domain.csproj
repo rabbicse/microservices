@@ -10,4 +10,8 @@
     <PackageReference Include="MediatR" Version="12.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Mehedi.SharedKernel\Mehedi.Core.SharedKernel.csproj" />
+  </ItemGroup>
+
 </Project>

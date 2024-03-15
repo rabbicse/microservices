@@ -5,25 +5,15 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Application layer
-//builder.Services.AddApplication();
-
 // Infra layer for write
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
-builder.Services.AddMediatR(cfg =>
-{
-    //cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-    cfg.RegisterServicesFromAssemblyContaining(typeof(Program));
-
-    //cfg.AddOpenBehavior(typeof(LoggingBehavior<,>));
-    //cfg.AddOpenBehavior(typeof(ValidatorBehavior<,>));
-    //cfg.AddOpenBehavior(typeof(TransactionBehavior<,>));
-});
+// Application layer
+builder.Services.AddApplication();
 
 // Add services to the container.
-
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>

@@ -5,3 +5,10 @@ The following microservices are backend apis which are written in .NET 8, Domain
 
 - Ordering Service
 - Catalog Service
+
+## Entity Framework Core Migrations
+
+```
+add-migration InitialMigration
+update-database
+```

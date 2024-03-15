@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Ordering.Domain.Aggregates.BuyerAggregate
 {
     public class Buyer
-        : Entity, IAggregateRoot
+        : BaseEntity, IAggregateRoot
     {
         [Required]
         public string IdentityGuid { get; private set; }
