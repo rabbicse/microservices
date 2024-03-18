@@ -1,7 +1,5 @@
-﻿using Mehedi.Core.SharedKernel;
+﻿namespace Customer.Domain.Aggregates.CustomerAggregate.Events;
 
-namespace Customer.Domain.Aggregates.CustomerAggregate.Events;
-
-public class CustomerDeletedEvent: BaseDomainEvent
+public class CustomerDeletedEvent(Guid id, string firstName, string lastName, DateTime dob) : CustomerBaseDomainEvent(id, firstName, lastName, dob)
 {
 }
