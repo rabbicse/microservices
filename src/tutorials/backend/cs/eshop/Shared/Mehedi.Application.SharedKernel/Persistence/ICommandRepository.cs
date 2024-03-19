@@ -1,21 +1,27 @@
-﻿using System.Linq.Expressions;
+﻿using Mehedi.Core.SharedKernel;
+using System.Linq.Expressions;
 
 namespace Mehedi.Application.SharedKernel.Persistence;
 
-public interface ICommandRepository<TEntity> where TEntity : class
+/// <summary>
+/// Represents a repository that allows write-only operations on entities.
+/// </summary>
+/// <typeparam name="TEntity"></typeparam>
+/// <typeparam name="TKey"></typeparam>
+public interface ICommandRepository<TEntity, in TKey>: IDisposable where TEntity : IEntity<TKey> where TKey : IEquatable<TKey>
 {
     /// <summary>
     /// Insert data using EF
     /// </summary>
     /// <param name="entity"></param>
     /// <returns></returns>
-    Task<TEntity> InsertAsync(TEntity entity);
+    Task<TEntity> AddAsync(TEntity entity);
     /// <summary>
     /// Insert multiple data using EF
     /// </summary>
     /// <param name="entity"></param>
     /// <returns></returns>
-    Task<IEnumerable<TEntity>> InsertAsync(IEnumerable<TEntity> entity);
+    Task<IEnumerable<TEntity>> AddAsync(IEnumerable<TEntity> entity);
     /// <summary>
     /// Update data using EF
     /// </summary>
@@ -45,13 +51,13 @@ public interface ICommandRepository<TEntity> where TEntity : class
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    Task<TEntity> DeleteAsync(object id);
+    Task<TEntity> DeleteAsync(TKey id);
     /// <summary>
     /// Get by Id, It might be guid, long or anything
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    Task<TEntity> GetAsync(object id);
+    Task<TEntity> GetByIdAsync(TKey id);
     /// <summary>
     /// Get by expression
     /// </summary>
