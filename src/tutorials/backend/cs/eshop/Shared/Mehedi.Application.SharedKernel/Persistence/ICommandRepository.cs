@@ -51,7 +51,7 @@ public interface ICommandRepository<TEntity, in TKey>: IDisposable where TEntity
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    Task<TEntity> DeleteAsync(TKey id);
+    Task<TEntity> DeleteByIdAsync(TKey id);
     /// <summary>
     /// Get by Id, It might be guid, long or anything
     /// </summary>
