@@ -72,7 +72,7 @@ public class UnitOfWork(
     /// Executes logic before saving changes to the database.
     /// </summary>
     /// <returns>A tuple containing the list of domain events and event stores.</returns>
-    private (IReadOnlyList<BaseDomainEvent> domainEvents, IReadOnlyList<EventStore> eventStores) BeforeSaveChanges()
+    private (IReadOnlyList<BaseDomainEvent> domainEvents, IReadOnlyList<EventStoreEvent> eventStores) BeforeSaveChanges()
     {
         var dbContext = (_writeDbContext as DbContext);
         // Get all domain entities with pending domain events
@@ -89,7 +89,7 @@ public class UnitOfWork(
 
         // Convert domain events to event stores
         var eventStores = domainEvents
-            .ConvertAll(@event => new EventStore(@event.AggregateId, @event.GetGenericTypeName(), @event.ToJson()));
+            .ConvertAll(@event => new EventStoreEvent(@event.AggregateId, @event.GetGenericTypeName(), @event.ToJson()));
 
         // Clear domain events from the entities
         domainEntities.ForEach(entry => entry.Entity.ClearDomainEvents());
@@ -105,7 +105,7 @@ public class UnitOfWork(
     /// <returns>A task representing the asynchronous operation.</returns>
     private async Task AfterSaveChangesAsync(
         IReadOnlyList<BaseDomainEvent> domainEvents,
-        IReadOnlyList<EventStore> eventStores)
+        IReadOnlyList<EventStoreEvent> eventStores)
     {
         // If there are no domain events or event stores, return without performing any actions.
         if (!domainEvents.Any() || !eventStores.Any())

@@ -12,3 +12,9 @@ The following microservices are backend apis which are written in .NET 8, Domain
 add-migration InitialMigration
 update-database
 ```
+
+To specify context
+```
+add-migration InitialMigration -Context <Context-Name>
+add-migration InitialMigration -Context EventStoreDbContext
+```

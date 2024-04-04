@@ -1,22 +1,23 @@
 ﻿using KYC.Domain.Aggregates.CustomerAggregate;
 using Mehedi.Application.SharedKernel.Persistence;
+using Mehedi.Core.SharedKernel;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 using System.Reflection;
 
 namespace KYC.Write.Infrastructure.Persistence;
 
-public class ApplicationDbContext : DbContext, IWriteDbContext
+public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options), IWriteDbContext
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-    {
-
-    }
-    public DbSet<Customer> Orders => Set<Customer>();
+    public DbSet<Customer> Customers => Set<Customer>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+        // Exclude BaseDomainEvent from being included in the DbContext
+        modelBuilder.Ignore<BaseDomainEvent>();
     }
 }
 

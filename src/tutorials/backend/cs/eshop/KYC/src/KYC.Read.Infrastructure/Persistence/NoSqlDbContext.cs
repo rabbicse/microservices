@@ -53,9 +53,11 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
 
     public string ConnectionString { get; }
 
-    public IMongoCollection<TQueryModel> GetCollection<TQueryModel>() where TQueryModel : IQueryModel =>
-        _database.GetCollection<TQueryModel>(typeof(TQueryModel).Name).;
+    public async Task<IEnumerable<TQueryModel>> GetCollectionAsync<TQueryModel>() where TQueryModel : IQueryModel =>
+        await GetCollection<TQueryModel>().Find(x => true).ToListAsync();
 
+    public IMongoCollection<TQueryModel> GetCollection<TQueryModel>() where TQueryModel : IQueryModel =>
+    _database.GetCollection<TQueryModel>(typeof(TQueryModel).Name);
     public async Task CreateCollectionsAsync()
     {
         using var asyncCursor = await _database.ListCollectionNamesAsync();

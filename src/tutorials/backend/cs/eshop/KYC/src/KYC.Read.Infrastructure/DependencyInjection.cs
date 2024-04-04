@@ -1,8 +1,15 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using KYC.Application.UseCases.Customers.Repositories;
+using KYC.Read.Infrastructure.Persistence;
+using KYC.Read.Infrastructure.Repositories;
 using Mehedi.Application.SharedKernel.Persistence;
 using Mehedi.Read.Infrastructure.SharedKernel.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Conventions;
+using MongoDB.Bson.Serialization.Serializers;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Text.Json;
@@ -47,7 +54,7 @@ public static class DependencyInjection
     /// </summary>
     /// <param name="services">The service collection.</param>
     public static IServiceCollection AddReadOnlyRepositories(this IServiceCollection services) =>
-        services.AddScoped<ICustomerReadOnlyRepository, CustomerReadOnlyRepository>();
+        services.AddScoped<ICustomerQueryRepository, CustomerQueryRepository>();
 
     /// <summary>
     /// Configures the MongoDB settings and mappings.
@@ -73,7 +80,7 @@ public static class DependencyInjection
             // Step 3: Register the mappings configurations.
             // It is recommended to register all mappings before initializing the connection with MongoDb
             // REF: https://mongodb.github.io/mongo-csharp-driver/2.0/reference/bson/mapping/
-            new CustomerMap().Configure(); // Configuration for Customer class
+            //new CustomerMap().Configure(); // Configuration for Customer class
         }
         catch
         {

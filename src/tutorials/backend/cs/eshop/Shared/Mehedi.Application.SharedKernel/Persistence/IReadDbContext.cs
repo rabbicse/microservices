@@ -14,7 +14,7 @@ public interface IReadDbContext
     /// </summary>
     /// <typeparam name="TQueryModel"></typeparam>
     /// <returns></returns>
-    IEnumerable<TQueryModel> GetCollection<TQueryModel>() where TQueryModel : IQueryModel;
+    Task<IEnumerable<TQueryModel>> GetCollectionAsync<TQueryModel>() where TQueryModel : IQueryModel;
 
     /// <summary>
     /// Creates collections in the database for all query models.

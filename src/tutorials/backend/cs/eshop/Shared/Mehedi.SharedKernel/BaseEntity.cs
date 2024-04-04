@@ -21,6 +21,7 @@ public abstract class BaseEntity : IEntity<Guid>
     /// <summary>
     /// Gets the domain events associated with this entity.
     /// </summary>
+    /// 
     public IEnumerable<BaseDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
 
     /// <summary>

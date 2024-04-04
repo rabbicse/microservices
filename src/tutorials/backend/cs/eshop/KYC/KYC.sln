@@ -31,9 +31,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mehedi.Application.SharedKe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mehedi.Write.Infrastructure.SharedKernel", "..\Shared\Mehedi.Write.Infrastructure.SharedKernel\Mehedi.Write.Infrastructure.SharedKernel.csproj", "{561D9DB6-5FB4-42E2-9F98-859826F48BAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KYC.Read.Infrastructure", "src\KYC.Read.Infrastructure\KYC.Read.Infrastructure.csproj", "{08747EDF-A939-4C47-ABE5-99B30EC04F39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KYC.Read.Infrastructure", "src\KYC.Read.Infrastructure\KYC.Read.Infrastructure.csproj", "{08747EDF-A939-4C47-ABE5-99B30EC04F39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mehedi.Read.Infrastructure.SharedKernel", "..\Shared\Mehedi.Read.Infrastructure.SharedKernel\Mehedi.Read.Infrastructure.SharedKernel.csproj", "{680EF8A3-6D11-46BA-96EA-699266A078CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mehedi.Read.Infrastructure.SharedKernel", "..\Shared\Mehedi.Read.Infrastructure.SharedKernel\Mehedi.Read.Infrastructure.SharedKernel.csproj", "{680EF8A3-6D11-46BA-96EA-699266A078CB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KYC.EventStore.Infrastructure", "KYC.EventStore.Infrastructure\KYC.EventStore.Infrastructure.csproj", "{27036753-403D-4FBF-A4FE-549B15FD0832}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mehedi.EventBus", "..\Shared\Mehedi.EventBus\Mehedi.EventBus.csproj", "{EC8945D2-888B-438C-B135-53D91670CDD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mehedi.EventBus.Kafka", "..\Shared\Mehedi.EventBus.Kafka\Mehedi.EventBus.Kafka.csproj", "{ED8BCD54-4CD6-4F63-A6AC-96059FF89F7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +83,18 @@ Global
 		{680EF8A3-6D11-46BA-96EA-699266A078CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{680EF8A3-6D11-46BA-96EA-699266A078CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{680EF8A3-6D11-46BA-96EA-699266A078CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27036753-403D-4FBF-A4FE-549B15FD0832}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27036753-403D-4FBF-A4FE-549B15FD0832}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27036753-403D-4FBF-A4FE-549B15FD0832}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27036753-403D-4FBF-A4FE-549B15FD0832}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC8945D2-888B-438C-B135-53D91670CDD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC8945D2-888B-438C-B135-53D91670CDD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC8945D2-888B-438C-B135-53D91670CDD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC8945D2-888B-438C-B135-53D91670CDD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED8BCD54-4CD6-4F63-A6AC-96059FF89F7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED8BCD54-4CD6-4F63-A6AC-96059FF89F7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED8BCD54-4CD6-4F63-A6AC-96059FF89F7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED8BCD54-4CD6-4F63-A6AC-96059FF89F7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,6 +113,9 @@ Global
 		{561D9DB6-5FB4-42E2-9F98-859826F48BAC} = {14C9C711-DF8F-4DE2-87D2-BE09398864AB}
 		{08747EDF-A939-4C47-ABE5-99B30EC04F39} = {6EA7E701-DA85-4535-93F6-6A86E4E9AD1B}
 		{680EF8A3-6D11-46BA-96EA-699266A078CB} = {14C9C711-DF8F-4DE2-87D2-BE09398864AB}
+		{27036753-403D-4FBF-A4FE-549B15FD0832} = {6EA7E701-DA85-4535-93F6-6A86E4E9AD1B}
+		{EC8945D2-888B-438C-B135-53D91670CDD8} = {14C9C711-DF8F-4DE2-87D2-BE09398864AB}
+		{ED8BCD54-4CD6-4F63-A6AC-96059FF89F7A} = {14C9C711-DF8F-4DE2-87D2-BE09398864AB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {690089AB-591A-46BB-AF5E-7881E2225881}
