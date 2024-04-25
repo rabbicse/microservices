@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.ResponseCompression;
 using KYC.Application;
 using KYC.Write.Infrastructure;
 using KYC.Read.Infrastructure;
-using KYC.EventStore.Infrastructure;
+using KYC.EventStoreDB.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -25,8 +25,22 @@ public static class JsonExtensions
     /// <typeparam name="T">The type of the object.</typeparam>
     /// <param name="value">The object to convert.</param>
     /// <returns>The JSON string representation of the object.</returns>
-    public static string ToJson<T>(this T value) =>
-        value != null ? JsonSerializer.Serialize(value, LazyOptions.Value) : default;
+    public static string ToJson<T>(this T value)
+    {
+        var options = new JsonSerializerOptions
+        {
+            IncludeFields = true,
+            //IgnoreNullValues = true,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            IgnoreReadOnlyProperties = false,
+            TypeInfoResolver = new PrivateConstructorContractResolver()
+
+        };
+
+        var obj = value != null ? JsonSerializer.Serialize(value, options) : default;
+        return obj;
+    }
 
     /// <summary>
     /// Configures the JsonSerializerOptions instance.
