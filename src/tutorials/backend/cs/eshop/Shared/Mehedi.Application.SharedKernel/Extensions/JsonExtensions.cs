@@ -2,6 +2,8 @@
 using System.Text.Json.Serialization.Metadata;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using System.Net.Http.Json;
+using Newtonsoft.Json;
 
 namespace Mehedi.Application.SharedKernel.Extensions;
 
@@ -16,8 +18,7 @@ public static class JsonExtensions
     /// <typeparam name="T">The type of the object to deserialize.</typeparam>
     /// <param name="value">The JSON string to deserialize.</param>
     /// <returns>The deserialized object of type T.</returns>
-    public static T FromJson<T>(this string value) =>
-        value != null ? JsonSerializer.Deserialize<T>(value, LazyOptions.Value) : default;
+    public static T? FromJson<T>(this string value) => value != null ? JsonConvert.DeserializeObject<T>(value) : default;
 
     /// <summary>
     /// Converts an object to JSON string.
@@ -25,22 +26,8 @@ public static class JsonExtensions
     /// <typeparam name="T">The type of the object.</typeparam>
     /// <param name="value">The object to convert.</param>
     /// <returns>The JSON string representation of the object.</returns>
-    public static string ToJson<T>(this T value)
-    {
-        var options = new JsonSerializerOptions
-        {
-            IncludeFields = true,
-            //IgnoreNullValues = true,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-            IgnoreReadOnlyProperties = false,
-            TypeInfoResolver = new PrivateConstructorContractResolver()
+    public static string? ToJson<T>(this T value) => value != null ? JsonConvert.SerializeObject(value) : default;
 
-        };
-
-        var obj = value != null ? JsonSerializer.Serialize(value, options) : default;
-        return obj;
-    }
 
     /// <summary>
     /// Configures the JsonSerializerOptions instance.

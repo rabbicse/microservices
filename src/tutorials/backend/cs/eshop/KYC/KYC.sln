@@ -43,6 +43,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mehedi.EventBus.Kafka", "..
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KYC.EventStoreDB.Infrastructure", "src\KYC.EventStoreDB.Infrastructure\KYC.EventStoreDB.Infrastructure.csproj", "{27E5E2D1-6486-419D-AA31-EBB04F4B3661}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "tests\Demo\Demo.csproj", "{DC82B8D4-1299-4A64-A0C4-28C50ADE688A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,10 @@ Global
 		{27E5E2D1-6486-419D-AA31-EBB04F4B3661}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27E5E2D1-6486-419D-AA31-EBB04F4B3661}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27E5E2D1-6486-419D-AA31-EBB04F4B3661}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC82B8D4-1299-4A64-A0C4-28C50ADE688A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC82B8D4-1299-4A64-A0C4-28C50ADE688A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC82B8D4-1299-4A64-A0C4-28C50ADE688A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC82B8D4-1299-4A64-A0C4-28C50ADE688A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -123,6 +129,7 @@ Global
 		{EC8945D2-888B-438C-B135-53D91670CDD8} = {14C9C711-DF8F-4DE2-87D2-BE09398864AB}
 		{ED8BCD54-4CD6-4F63-A6AC-96059FF89F7A} = {14C9C711-DF8F-4DE2-87D2-BE09398864AB}
 		{27E5E2D1-6486-419D-AA31-EBB04F4B3661} = {6EA7E701-DA85-4535-93F6-6A86E4E9AD1B}
+		{DC82B8D4-1299-4A64-A0C4-28C50ADE688A} = {B7EE9B1D-1D21-4BC1-9292-8B2835045B35}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {690089AB-591A-46BB-AF5E-7881E2225881}
