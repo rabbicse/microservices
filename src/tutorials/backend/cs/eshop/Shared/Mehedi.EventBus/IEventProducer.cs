@@ -3,7 +3,7 @@
 
 public interface IEventProducer
     {
-        Task PublishAsync(IntegrationEvent @event, CancellationToken cancellationToken = default);
+        Task<bool> PublishAsync(IntegrationEvent @event, CancellationToken cancellationToken = default);
     }
 
 

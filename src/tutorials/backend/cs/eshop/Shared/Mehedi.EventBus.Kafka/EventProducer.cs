@@ -21,10 +21,9 @@ public class EventProducer : IDisposable, IEventProducer
         _producer = producerBuilder.Build();
     }
 
-    public async Task PublishAsync(IntegrationEvent @event, CancellationToken cancellationToken = default)
+    public async Task<bool> PublishAsync(IntegrationEvent @event, CancellationToken cancellationToken = default)
     {
-        if (null == @event)
-            throw new ArgumentNullException(nameof(@event));
+        ArgumentNullException.ThrowIfNull(@event);
 
         _logger.LogInformation("publishing event {EventId} ...", @event.Id);
         var eventType = @event.GetType();
@@ -44,7 +43,9 @@ public class EventProducer : IDisposable, IEventProducer
             Headers = headers
         };
 
-        await _producer.ProduceAsync(_config.TopicName, message);
+        var result = await _producer.ProduceAsync(_config.TopicName, message, cancellationToken);
+        _logger.LogInformation($"Publish event status of {@event.Id}: {result.Message.Value}");
+        return result.Status == PersistenceStatus.Persisted;
     }
 
     public void Dispose()
