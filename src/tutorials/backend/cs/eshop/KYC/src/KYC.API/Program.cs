@@ -3,6 +3,7 @@ using KYC.Application;
 using KYC.Write.Infrastructure;
 using KYC.Read.Infrastructure;
 using KYC.EventStoreDB.Infrastructure;
+using KYC.RedisCache.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +11,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Compression
 builder.Services.Configure<GzipCompressionProviderOptions>(compressionOptions => compressionOptions.Level = System.IO.Compression.CompressionLevel.Fastest);
-
 builder.Services.AddResponseCompression(compressionOptions =>
  {
      compressionOptions.EnableForHttps = true;
@@ -27,6 +27,7 @@ builder.Services.AddReadDbContext();
 builder.Services.AddReadOnlyRepositories();
 builder.Services.AddWriteInfrastructureServices(builder.Configuration);
 builder.Services.AddEventStoreInfrastructureServices(builder.Configuration);
+builder.Services.AddCacheInfrastructureServices(builder.Configuration);
 builder.Services.AddCommandHandlers();
 // Add dependencies from Infra layer
 

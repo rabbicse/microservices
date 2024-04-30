@@ -16,6 +16,7 @@ public sealed class EventStoreRepository(EventStoreClient eventStoreClient, ILog
             return;
         }
 
+        // TODO:
         var result = await _eventStoreClient.AppendToStreamAsync(
             eventStores.First().Id.ToString(),
             StreamState.Any,
@@ -45,11 +46,7 @@ public sealed class EventStoreRepository(EventStoreClient eventStoreClient, ILog
         if (_disposed)
             return;
 
-        // Dispose managed state (managed objects).
-        if (disposing)
-        {
-            //_eventStoreClient.Dispose();
-        }
+        // Dispose managed state (managed objects).        
 
         _disposed = true;
     }

@@ -36,7 +36,7 @@ public class Customer : BaseEntity, IAggregateRoot
     public void Create()
     {
         // TODO: other business
-        AddDomainEvent(new CustomerCreatedEvent(Id, FirstName, LastName, Dob));
+        AddDomainEvent(new CustomerCreatedDomainEvent(Id, FirstName, LastName, Dob));
     }
     /// <summary>
     /// Deletes the customer.

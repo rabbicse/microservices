@@ -34,7 +34,8 @@ public static class DependencyInjection
         EventStoreDBOptions? options = null
     )
     {
-        var settings = EventStoreClientSettings.Create(config.GetConnectionString(DefaultConfigKey));
+        var connectionString = config.GetConnectionString(DefaultConfigKey);
+        var settings = EventStoreClientSettings.Create(connectionString);
         services
             //.AddSingleton(EventTypeMapper.Instance)
             .AddSingleton(new EventStoreClient(settings));

@@ -11,6 +11,7 @@ using Polly.Retry;
 using System.Linq.Expressions;
 using System.Reflection;
 using Mehedi.Application.SharedKernel.Extensions;
+using Microsoft.Extensions.Configuration;
 
 namespace KYC.Read.Infrastructure.Persistence;
 
@@ -37,11 +38,11 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
     private readonly ILogger<NoSqlDbContext> _logger;
     private readonly AsyncRetryPolicy _mongoRetryPolicy;
 
-    public NoSqlDbContext(IOptions<ConnectionOptions> options, ILogger<NoSqlDbContext> logger)
+    public NoSqlDbContext(IConfiguration config, ILogger<NoSqlDbContext> logger)
     {
-        ConnectionString = options.Value.NoSqlConnection;
+        var connectionString = config.GetConnectionString("NoSqlConnection");
 
-        var mongoClient = new MongoClient(options.Value.NoSqlConnection);
+        var mongoClient = new MongoClient(connectionString);
         _database = mongoClient.GetDatabase(DatabaseName);
         _logger = logger;
         _mongoRetryPolicy = CreateRetryPolicy(logger);
@@ -50,8 +51,6 @@ public sealed class NoSqlDbContext : IReadDbContext, ISynchronizeDb
     #endregion
 
     #region IReadDbContext
-
-    public string ConnectionString { get; }
 
     public async Task<IEnumerable<TQueryModel>> GetCollectionAsync<TQueryModel>() where TQueryModel : IQueryModel =>
         await GetCollection<TQueryModel>().Find(x => true).ToListAsync();

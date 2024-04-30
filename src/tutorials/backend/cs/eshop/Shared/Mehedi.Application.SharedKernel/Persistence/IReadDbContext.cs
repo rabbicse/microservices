@@ -5,11 +5,6 @@ namespace Mehedi.Application.SharedKernel.Persistence;
 public interface IReadDbContext
 {
     /// <summary>
-    /// Gets the connection string for the database.
-    /// </summary>
-    string ConnectionString { get; }
-
-    /// <summary>
     /// Gets the collection for the specified query model.
     /// </summary>
     /// <typeparam name="TQueryModel"></typeparam>
