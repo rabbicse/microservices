@@ -1,5 +1,5 @@
 service: serverless-api
-frameworkVersion: '3'
+frameworkVersion: "3"
 useDotenv: true
 
 provider:
@@ -13,7 +13,15 @@ functions:
   api:
     handler: src/index.handler
     events:
-      - httpApi: '*'
+      - httpApi: "*"
+
+custom:
+  dotenv:
+    exclude:
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_SESSION_TOKEN
+      - DATABASE_URL
 
 plugins:
   - serverless-offline

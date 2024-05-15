@@ -4,6 +4,8 @@ const { neon, neonConfig } = require("@neondatabase/serverless");
 
 const app = express();
 
+const DATABASE_URL_SSM_PARAM='/serverless-api/prod/database-url'
+
 async function dbClient() {
   neonConfig.fetchConnectionCache = true;
   const sql = neon(process.env.DATABASE_URL);
