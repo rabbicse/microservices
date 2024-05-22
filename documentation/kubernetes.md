@@ -498,9 +498,55 @@ kubectl -n kubernetes-dashboard port-forward --address 0.0.0.0 svc/kubernetes-da
 Now access dashboard from the following url, for my case ip address is `192.168.0.193`
 ```
 https://192.168.0.193:8443
+```
+
+### Creating sample user
+
+In this guide, we will find out how to create a new user using the Service Account mechanism of Kubernetes, grant this user admin permissions and login to Dashboard using a bearer token tied to this user.
+
+For each of the following snippets for ServiceAccount and ClusterRoleBinding, you should copy them to new manifest files like dashboard-adminuser.yaml and use kubectl apply -f dashboard-adminuser.yaml to create them.
 
 ```
-https://helm.sh/docs/intro/install/
-https://github.com/kubernetes/dashboard
-https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: admin-user
+  namespace: kubernetes-dashboard
 ```
+
+### Creating a ClusterRoleBinding
+
+In most cases after provisioning the cluster using kops, kubeadm or any other popular tool, the ClusterRole cluster-admin already exists in the cluster. We can use it and create only a ClusterRoleBinding for our ServiceAccount. If it does not exist then you need to create this role first and grant required privileges manually.
+
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: admin-user
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: admin-user
+  namespace: kubernetes-dashboard
+```
+
+### Getting a Bearer Token for ServiceAccount
+
+Now we need to find the token we can use to log in. Execute the following command:
+```
+kubectl -n kubernetes-dashboard create token admin-user
+```
+It should print something like:
+```
+master@master:~$ kubectl -n kubernetes-dashboard create token admin-user
+eyJhbGciOiJSUzI1NiIsImtpZCI6IjJYaXFaNVpPMXlaSUNsTGhkLXVtLXRtb2dwWTAtWkNuZlNqMzNkMU1sVVEifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoxNzE2NDAyODUxLCJpYXQiOjE3MTYzOTkyNTEsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwianRpIjoiMDIxMjY2YjMtODE0OC00NjRhLTgzMjMtMjM4NzMyOTUwODk2Iiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsInNlcnZpY2VhY2NvdW50Ijp7Im5hbWUiOiJhZG1pbi11c2VyIiwidWlkIjoiYzA3MjI3ODgtOGJiZS00MmNhLThkYWUtZDQ1YzA5ZWU2ZmNmIn19LCJuYmYiOjE3MTYzOTkyNTEsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlcm5ldGVzLWRhc2hib2FyZDphZG1pbi11c2VyIn0.sP-Qcrh37iZ4_Xc9K04SaGyBrfFfzoXFZJwJgh4YU7zMoKzbE7rafXajD18UtNKrwFZA30Bp157uxDy6OqmVKL4YA_k5P1TyVNFSK4LfMtfx9XHUFhxGvItnE7MDPyc1D4u1Ib5-K-x3ZwYnTToX3IgY8vwh5mVs32bYBfgAKg4KqbHt2T0c00Ow4D79O-GVlp4Opc92auRYzLG-Ks7x-kS24ZVePJgUuQ7aowP2e5IPnjK1hIrZE44TeWyuCdnGn15SglybuQRzWVScfwcM3Yo0y09nw3CwvCmShONOOzHg857Tn6amwXWvHDKn4jwyDZnQJg22UXfdPFHIlEuptA
+master@master:~$
+```
+
+## References
+- https://helm.sh/docs/intro/install/
+- https://github.com/kubernetes/dashboard
+- https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md
