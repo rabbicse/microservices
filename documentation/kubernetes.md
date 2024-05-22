@@ -279,7 +279,62 @@ kubeadm join 192.168.0.193:6443 --token 1rc7cy.ln076tz43nj0ghjr \
 	--discovery-token-ca-cert-hash sha256:a6c7f7d99f35fec5f274d50fd1120bebd7c518b4eaa8174ebcba87fbd33c7677 
 ```
 
-### Installing a Pod network add-on
+Note down the above output carefully and follow the instructions carefully for next steps. 
+First write the following commands
+```
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+
+Then run the following command:
+```
+export KUBECONFIG=/etc/kubernetes/admin.conf
+```
+
+### Permissions of admin.config
+Write the following command to set permissions of admin.config
+```
+sudo chmod -R 777 /etc/kubernetes/admin.conf
+```
+
+## Join with cluster from worker nodes
+Write the following similar command to join with master node. Note: this command comes from above output from master.
+```
+sudo kubeadm join 192.168.0.193:6443 --token 1rc7cy.ln076tz43nj0ghjr \
+	--discovery-token-ca-cert-hash sha256:a6c7f7d99f35fec5f274d50fd1120bebd7c518b4eaa8174ebcba87fbd33c7677
+```
+
+### Check cluster status
+Write the following command to check cluster status
+```
+kubectl cluster-info
+```
+
+It should produce the output like the following snippet
+```
+master@master:~$ kubectl cluster-info
+Kubernetes control plane is running at https://192.168.0.193:6443
+CoreDNS is running at https://192.168.0.193:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+```
+
+Write to following command to check node status with the following `kubectl` command
+```
+kubectl get nodes -o wide
+```
+
+The output should be the following snippet.
+```
+master@master:~$ kubectl get nodes -o wide
+NAME      STATUS   ROLES           AGE     VERSION   INTERNAL-IP     EXTERNAL-IP   OS-IMAGE           KERNEL-VERSION     CONTAINER-RUNTIME
+master    Ready    control-plane   6m55s   v1.30.1   192.168.0.193   <none>        Ubuntu 24.04 LTS   6.8.0-31-generic   containerd://1.6.31
+worker1   Ready    <none>          4m31s   v1.30.1   192.168.0.143   <none>        Ubuntu 24.04 LTS   6.8.0-31-generic   containerd://1.6.31
+master@master:~$
+```
+
+### Installing a Pod network add-on (Only on master)
 This section contains important information about networking setup and deployment order. Read all of this advice carefully before proceeding.
 
 You must deploy a Container Network Interface (CNI) based Pod network add-on so that your Pods can communicate with each other. Cluster DNS (CoreDNS) will not start up before a network is installed.
@@ -290,23 +345,160 @@ By default, kubeadm sets up your cluster to use and enforce use of RBAC (role ba
 
 If you want to use IPv6--either dual-stack, or single-stack IPv6 only networking--for your cluster, make sure that your Pod network plugin supports IPv6. IPv6 support was added to CNI in v0.6.0.
 
+### Enable API Server
+Check the Kubernetes API server's address and port configuration. Typically, the API server runs on port 6443. Make sure the kube-apiserver is correctly configured to bind to the appropriate address.
+
+### Install calico
 So install calico on kubernetes cluster by following the [link](https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart)
 
-Write the following command:
+1. Install the Tigera Calico operator and custom resource definitions.
 ```
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/tigera-operator.yaml
 ```
-
-
-### Enable API Server
-Check the Kubernetes API server's address and port configuration. Typically, the API server runs on port 6443. Make sure the kube-apiserver is correctly configured to bind to the appropriate address.You can also specify the API server's address explicitly when using kubectl:
-
+2. Install Calico by creating the necessary custom resource.
 ```
-wget https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/tigera-operator.yaml
-sudo kubectl apply -f tigera-operator.yaml -validate=false
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/custom-resources.yaml
+```
+3. Confirm that all of the pods are running with the following command.
+```
+watch kubectl get pods -n calico-system
 ```
 
-### Kubernetes Dashboard Install helm
+It should produce output as the following snippet.
+```
+master@master:~$ watch kubectl get pods -n calico-system
+
+Every 2.0s: kubectl get pods -n calico-system                         master: Wed May 22 15:55:46 2024
+
+NAME                                       READY   STATUS    RESTARTS   AGE
+calico-kube-controllers-6965d8c554-ds7lp   1/1     Running   0          25s
+calico-node-jlqfs                          0/1     Running   0          25s
+calico-node-vgp2q                          0/1     Running   0          25s
+calico-typha-7dc95cc6b6-xp6hn              1/1     Running   0          25s
+csi-node-driver-qkd26                      2/2     Running   0          25s
+csi-node-driver-twg5q                      2/2     Running   0          25s
+```
+Wait until all status are running. So final output should be the following snippet.
+```
+master@master:~$ watch kubectl get pods -n calico-system
+
+Every 2.0s: kubectl get pods -n calico-system                         master: Wed May 22 15:57:31 2024
+
+NAME                                       READY   STATUS    RESTARTS   AGE
+calico-kube-controllers-6965d8c554-ds7lp   1/1     Running   0          2m10s
+calico-node-jlqfs                          1/1     Running   0          2m10s
+calico-node-vgp2q                          1/1     Running   0          2m10s
+calico-typha-7dc95cc6b6-xp6hn              1/1     Running   0          2m10s
+csi-node-driver-qkd26                      2/2     Running   0          2m10s
+csi-node-driver-twg5q                      2/2     Running   0          2m10
+```
+
+### Deploy first hello pod to kubernetes cluster
+Write the following command to deply `hello` pod at kubernetes cluster with the following command
+```
+kubectl apply -f hello-pod.yaml
+```
+
+Please check the yaml file to deploy hello pod.
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-pod
+spec:
+  containers:
+    - name: hello
+      image: busybox
+      command: ['sh', '-c', 'echo Hello from Hello Pod! && sleep 3600']
+```
+
+It should produce the following output for success case.
+```
+master@master:~$ kubectl apply -f hello-pod.yaml 
+pod/hello-pod created
+```
+
+Write the following command to check all pods.
+```
+kubectl get pods -o wide
+```
+You should get the following output for success case.
+```
+master@master:~$ kubectl get pods -o wide
+NAME        READY   STATUS    RESTARTS   AGE   IP                NODE      NOMINATED NODE   READINESS GATES
+hello-pod   1/1     Running   0          72s   192.168.235.132   worker1   <none>           <none>
+master@master:~$
+```
+
+### Kubernetes Dashboard 
+Dashboard is a web-based Kubernetes user interface. You can use Dashboard to deploy containerized applications to a Kubernetes cluster, troubleshoot your containerized application, and manage the cluster resources. You can use Dashboard to get an overview of applications running on your cluster, as well as for creating or modifying individual Kubernetes resources (such as Deployments, Jobs, DaemonSets, etc). For example, you can scale a Deployment, initiate a rolling update, restart a pod or deploy new applications using a deploy wizard.
+
+Dashboard also provides information on the state of Kubernetes resources in your cluster and on any errors that may have occurred.
+
+To install Kubernetes Dashboard first we need to install helm as per official documentation recommendation. Please check official documentation from [here](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) and from their [github](https://github.com/kubernetes/dashboard/tree/master) repository.
+
+### Install helm
+To install helm follow official instructions from [here](https://helm.sh/docs/intro/install/)
+
+For ubuntu 24.04 please write the following commands one by one to install helm.
+```
+curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+sudo apt-get install apt-transport-https --yes
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+sudo apt-get update
+sudo apt-get install helm
+```
+
+### Install Kubernetes Dashboard
+Write the following commands one by one to install Kubernetes Dashboard on cluster
+```
+helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
+helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace kubernetes-dashboard
+```
+The following output should be produced
+```
+master@master:~$ helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace kubernetes-dashboard
+WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /etc/kubernetes/admin.conf
+WARNING: Kubernetes configuration file is world-readable. This is insecure. Location: /etc/kubernetes/admin.conf
+Release "kubernetes-dashboard" does not exist. Installing it now.
+NAME: kubernetes-dashboard
+LAST DEPLOYED: Tue May 21 18:38:36 2024
+NAMESPACE: kubernetes-dashboard
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+*************************************************************************************************
+*** PLEASE BE PATIENT: Kubernetes Dashboard may need a few minutes to get up and become ready ***
+*************************************************************************************************
+
+Congratulations! You have just installed Kubernetes Dashboard in your cluster.
+
+To access Dashboard run:
+  kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8443:443
+
+NOTE: In case port-forward command does not work, make sure that kong service name is correct.
+      Check the services in Kubernetes Dashboard namespace using:
+        kubectl -n kubernetes-dashboard get svc
+
+Dashboard will be available at:
+  https://localhost:8443
+```
+
+Now write the following command to check status
+```
+kubectl -n kubernetes-dashboard get svc -o wide
+```
+
+To access Dashboard run:
+```
+kubectl -n kubernetes-dashboard port-forward --address 0.0.0.0 svc/kubernetes-dashboard-kong-proxy 8443:443
+```
+
+Now access dashboard from the following url, for my case ip address is `192.168.0.193`
+```
+https://192.168.0.193:8443
+
 ```
 https://helm.sh/docs/intro/install/
 https://github.com/kubernetes/dashboard
