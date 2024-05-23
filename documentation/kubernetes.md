@@ -118,7 +118,7 @@ Follow the installation process.
 ```
 # Add Docker's official GPG key:
 sudo apt-get update
-sudo apt-get install ca-certificates curl
+sudo apt-get install apt-transport-https ca-certificates curl gpg
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
@@ -197,66 +197,23 @@ Verify that IP forwarding is enabled:
 cat /proc/sys/net/ipv4/ip_forward
 ```
 
-## Install Kubectl
-### Step 1
-Download the latest release with the command:
-
-```
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-```
-### Step 2
-Validate the binary (optional)
-
-```
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
-```
-
-Validate the kubectl binary against the checksum file:
-```
-echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
-```
-
-### Step 3
-Install kubectl
-```
-sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-```
-
-### Step 4
-Test to ensure the version you installed is up-to-date:
-```
-kubectl version --client
-```
-
-Or use this for detailed view of version:
-
-```
-kubectl version --client --output=yaml
-```
-
-## Install Kubeadm
+## Install Kubeadm, Kubectl and Kubelet
 These instructions are for Kubernetes v1.30.
 
-1. Update the apt package index and install packages needed to use the Kubernetes apt repository:
+- Download the public signing key for the Kubernetes package repositories. If the directory `/etc/apt/keyrings` does not exist, it should be created before the curl command, read the note below.
 
 ```
-sudo apt-get update
-# apt-transport-https may be a dummy package; if so, you can skip that package
-sudo apt-get install -y apt-transport-https ca-certificates curl gpg
+sudo mkdir -p -m 755 /etc/apt/keyrings
 ```
 
-2. Download the public signing key for the Kubernetes package repositories. The same signing key is used for all repositories so you can disregard the version in the URL:
-
+Then write the following curl command.
 ```
-# If the directory `/etc/apt/keyrings` does not exist, it should be created before the curl command, read the note below.
-# sudo mkdir -p -m 755 /etc/apt/keyrings
 curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 ```
 
-3. Add the appropriate Kubernetes apt repository. Please note that this repository have packages only for Kubernetes 1.30; for other Kubernetes minor versions, you need to change the Kubernetes minor version in the URL to match your desired minor version (you should also check that you are reading the documentation for the version of Kubernetes that you plan to install).
+- Add the appropriate Kubernetes apt repository. Note that This will overwrite any existing configuration in `/etc/apt/sources.list.d/kubernetes.list`
 
 ```
-# This overwrites any existing configuration in /etc/apt/sources.list.d/kubernetes.list
 echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
 
@@ -276,30 +233,13 @@ sudo systemctl enable --now kubelet
 ## Creating a cluster with kubeadm
 
 ### Network setup
-kubeadm similarly to other Kubernetes components tries to find a usable IP on the network interfaces associated with a default gateway on a host. Such an IP is then used for the advertising and/or listening performed by a component.
-
-To find out what this IP is on a Linux host you can use:
+kubeadm similarly to other Kubernetes components tries to find a usable IP on the network interfaces associated with a default gateway on a host. To find out what this IP is on a Linux host you can use:
 
 ```
 ip route show # Look for a line starting with "default via"
 ```
 
-Kubernetes components do not accept custom network interface as an option, therefore a custom IP address must be passed as a flag to all components instances that need such a custom configuration.
-
-To configure the API server advertise address for control plane nodes created with both init and join, the flag `--apiserver-advertise-address` can be used. Preferably, this option can be set in the kubeadm API as InitConfiguration.localAPIEndpoint and JoinConfiguration.controlPlane.localAPIEndpoint.
-
-For kubelets on all nodes, the --node-ip option can be passed in .nodeRegistration.kubeletExtraArgs inside a kubeadm configuration file (InitConfiguration or JoinConfiguration).
-
-For dual-stack see Dual-stack support with kubeadm.
-
-The IP addresses that you assign to control plane components become part of their X.509 certificates' subject alternative name fields. Changing these IP addresses would require signing new certificates and restarting the affected components, so that the change in certificate files is reflected. 
-
 ### Initializing your control-plane node
-The control-plane node is the machine where the control plane components run, including etcd (the cluster database) and the API Server (which the kubectl command line tool communicates with).
-
-(Recommended) If you have plans to upgrade this single control-plane kubeadm cluster to high availability you should specify the `--control-plane-endpoint` to set the shared endpoint for all control-plane nodes. Such an endpoint can be either a DNS name or an IP address of a load-balancer.
-Choose a Pod network add-on, and verify whether it requires any arguments to be passed to kubeadm init. Depending on which third-party provider you choose, you might need to set the `--pod-network-cidr` to a provider-specific value. 
-(Optional) kubeadm tries to detect the container runtime by using a list of well known endpoints. To use different container runtime or if there are more than one installed on the provisioned node, specify the `--cri-socket` argument to kubeadm. 
 To initialize the control-plane node run:
 
 ```
@@ -321,7 +261,7 @@ Turning a single control plane cluster created without `--control-plane-endpoint
 
 So write the following command.
 ```
-sudo kubeadm init --cri-socket /var/run/containerd/containerd.sock --v=5
+sudo kubeadm init --pod-network-cidr=192.168.0.0/16 --cri-socket=/var/run/containerd/containerd.sock --v=5
 ```
 
 It'll produce output like the following snippet.
@@ -362,7 +302,7 @@ export KUBECONFIG=/etc/kubernetes/admin.conf
 ### Permissions of admin.config
 Write the following command to set permissions of admin.config
 ```
-sudo chmod -R 777 /etc/kubernetes/admin.conf
+sudo chmod -R 755 /etc/kubernetes/admin.conf
 ```
 
 ## Join with cluster from worker nodes
