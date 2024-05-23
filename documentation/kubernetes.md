@@ -30,6 +30,13 @@ The nodes in this lab setup are as follows:
 
 ## Common Installation (Master and Worker nodes)
 
+### Install Vim (Optional)
+It's an editor and will be used to edit config files from terminal. There are many other ways but it's my personal preferences to edit files from terminal.
+
+```
+sudo apt-get install vim
+```
+
 ### Swap configuration
 The default behavior of a kubelet was to fail to start if swap memory was detected on a node. You MUST disable `swap` if the kubelet is not properly configured to use `swap`. 
 Write the following command to swap off.
@@ -63,10 +70,39 @@ nc 127.0.0.1 6443 -v
 
 The pod network plugin you use may also require certain ports to be open.
 
-### Install Vim
+### Enable kernel modules and configure sysctl
+Enable kernel modules with the following commands
 ```
-sudo apt-get install vim
+sudo modprobe overlay
+sudo modprobe br_netfilter
 ```
+
+Add some settings to sysctl with the following command
+```
+sudo tee /etc/sysctl.d/kubernetes.conf<<EOF
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.ipv4.ip_forward = 1
+EOF
+```
+
+Terminal window should looks like the following snippet
+```
+master@master:~$ sudo tee /etc/sysctl.d/kubernetes.conf<<EOF
+> net.bridge.bridge-nf-call-ip6tables = 1
+> net.bridge.bridge-nf-call-iptables = 1
+> net.ipv4.ip_forward = 1
+> EOF
+```
+
+And the ouput will be like
+```
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.ipv4.ip_forward = 1
+```
+
+
 
 ## Installing a container runtime
 To run containers in Pods, Kubernetes uses a container runtime. By default, Kubernetes uses the Container Runtime Interface (CRI) to interface with your chosen container runtime. If you don't specify a runtime, kubeadm automatically tries to detect an installed container runtime by scanning through a list of known endpoints. If multiple or no container runtimes are detected `kubeadm` will throw an error and will request that you specify which one you want to use.
