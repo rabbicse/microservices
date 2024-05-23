@@ -1,41 +1,67 @@
+# Kubernetes Cluster Setup on Ubuntu 24.04 LTS Server
+Kubernetes, also known as K8s, is an open source system for automating deployment, scaling, and management of containerized applications. A production-quality Kubernetes cluster requires planning and preparation. If your Kubernetes cluster is to run critical workloads, it must be configured to be resilient.
+
+There are two categories of nodes in a Kubernetes cluster, namely:
+- **Master Node:** This handles the control API calls for the pods, replications controllers, services, nodes and other components of a Kubernetes cluster.
+- **Worker Node:** Provides the run-time environments for the containers. A set of container pods can span multiple nodes. In your Master / Worker nodes.
+
 ## Before you begin 
-A compatible Linux host. The Kubernetes project provides generic instructions for Linux distributions based on Debian and Red Hat, and those distributions without a package manager.
+- A compatible Linux host. The Kubernetes project provides generic instructions for Linux distributions based on Debian and Red Hat, and those distributions without a package manager.
 - 2 GB or more of RAM per machine (any less will leave little room for your apps).
 - 2 CPUs or more.
 - Full network connectivity between all machines in the cluster (public or private network is fine).
-- Unique hostname, MAC address, and product_uuid for every node. 
-- Certain ports are open on your machines.
-### Swap configuration 
-The default behavior of a kubelet was to fail to start if swap memory was detected on a node. Swap has been supported since v1.22. And since v1.28, Swap is supported for cgroup v2 only; the NodeSwap feature gate of the kubelet is beta but disabled by default.
-You MUST disable `swap` if the kubelet is not properly configured to use `swap`. 
+- Unique hostname, MAC address, and product_uuid for every node. See here for more details.
+- Certain ports are open on your machines. See here for more details.
+- Swap configuration.
 
+## Lab Setup
+The basic lab setup described in this guide consists of three servers: 
+- one Master Node
+- two Worker Nodes for running containerized workloads.
+Here I have used 3 virtual machines. You can add additional nodes to meet your desired environment load requirements. For high availability (HA), three control plane nodes are required along with a control plane API endpoint.
+
+The nodes in this lab setup are as follows:
+
+| Server Role | Host Name | Configuration | IP Address |
+| :---: | :----: | :---: | :---: |
+| Master | master | 8GB Ram, 4vcpus | 192.168.0.193 |
+| Worker | worker1 | 4GB Ram, 2vcpus | 192.168.0.143 |
+| Worker | worker2 | 4GB Ram, 2vcpus | 192.168.0.103 |
+
+## Common Installation (Master and Worker nodes)
+
+### Swap configuration
+The default behavior of a kubelet was to fail to start if swap memory was detected on a node. You MUST disable `swap` if the kubelet is not properly configured to use `swap`. 
 Write the following command to swap off.
+
 ```sudo swapoff -a``` 
 
 It will disable swapping temporarily. To make this change persistent across reboots, make sure swap is disabled in config files like `/etc/fstab`, `systemd.swap`, depending how it was configured on your system.
 
 ### Verify the MAC address and product_uuid are unique for every node 
 You can get the MAC address of the network interfaces using the command 
+
 ```ip link``` 
+
 or 
+
 ```ifconfig -a```
+
 The product_uuid can be checked by using the command 
+
 ```
 sudo cat /sys/class/dmi/id/product_uuid
 ```
+
 It is very likely that hardware devices will have unique addresses, although some virtual machines may have identical values. Kubernetes uses these values to uniquely identify the nodes in the cluster. If these values are not unique to each node, the installation process may fail.
 
-### Check network adapters 
-If you have more than one network adapter, and your Kubernetes components are not reachable on the default route, we recommend you add IP route(s) so Kubernetes cluster addresses go via the appropriate adapter.
-
-### Check required ports 
-These required ports need to be open in order for Kubernetes components to communicate with each other. You can use tools like netcat to check if a port is open. For example:
+Also need to check required ports. These required ports need to be open in order for Kubernetes components to communicate with each other. You can use tools like netcat to check if a port is open. For example:
 
 ```
 nc 127.0.0.1 6443 -v
 ```
 
-The pod network plugin you use may also require certain ports to be open. Since this differs with each pod network plugin, please see the documentation for the plugins about what port(s) those need.
+The pod network plugin you use may also require certain ports to be open.
 
 ### Install Vim
 ```
@@ -51,7 +77,7 @@ This section outlines the necessary steps to use containerd as CRI runtime.To in
 On Linux the default CRI socket for containerd is `/run/containerd/containerd.sock`.
 
 Follow the installation process.
-1. Set up Docker's apt repository.
+- Set up Docker's apt repository.
 
 ```
 # Add Docker's official GPG key:
@@ -69,23 +95,28 @@ echo \
 sudo apt-get update
 ```
 
-2. Install containerd
+- Install containerd
 ```
 sudo apt-get install containerd.io
 ```
 
-3. Run the following commands to configure containerd
+- Run the following commands to configure containerd
 ```
 sudo mkdir -p /etc/containerd
 sudo containerd config default | sudo tee /etc/containerd/config.toml
 ```
 
-4. Verify that the configuration is correct, particularly the plugins."io.containerd.grpc.v1.cri" section. Ensure the sandbox_image is properly set:
+- Verify that the configuration is correct, particularly the plugins."io.containerd.grpc.v1.cri" section. Ensure the sandbox_image is properly set:
 ```
 [plugins."io.containerd.grpc.v1.cri".containerd]
   snapshotter = "overlayfs"
 [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
   SystemdCgroup = true
+```
+
+- To edit configuration write the following command and then edit the above lines if required.
+```
+sudo vi /etc/containerd/config.toml
 ```
 
 5. Restart containerd
