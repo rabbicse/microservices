@@ -60,9 +60,7 @@ The product_uuid can be checked by using the command
 sudo cat /sys/class/dmi/id/product_uuid
 ```
 
-It is very likely that hardware devices will have unique addresses, although some virtual machines may have identical values. Kubernetes uses these values to uniquely identify the nodes in the cluster. If these values are not unique to each node, the installation process may fail.
-
-Also need to check required ports. These required ports need to be open in order for Kubernetes components to communicate with each other. You can use tools like netcat to check if a port is open. For example:
+It is very likely that hardware devices will have unique addresses, although some virtual machines may have identical values. Kubernetes uses these values to uniquely identify the nodes in the cluster. If these values are not unique to each node, the installation process may fail. Also need to check required ports. These required ports need to be open in order for Kubernetes components to communicate with each other. You can use tools like netcat to check if a port is open. For example:
 
 ```
 nc 127.0.0.1 6443 -v
@@ -116,14 +114,13 @@ sudo sysctl --system
 ```
 
 ## Installing a container runtime
-To run containers in Pods, Kubernetes uses a container runtime. By default, Kubernetes uses the Container Runtime Interface (CRI) to interface with your chosen container runtime. If you don't specify a runtime, kubeadm automatically tries to detect an installed container runtime by scanning through a list of known endpoints. If multiple or no container runtimes are detected `kubeadm` will throw an error and will request that you specify which one you want to use.
+To run containers in Pods, Kubernetes uses a container runtime. By default, Kubernetes uses the Container Runtime Interface (CRI) to interface with your chosen container runtime. If you don't specify a runtime, kubeadm automatically tries to detect an installed container runtime by scanning through a list of known endpoints. If multiple or no container runtimes are detected `kubeadm` will throw an error and will request that you specify which one you want to use. For my lab I have used `containerd` as container runtime.
 
 ### containerd
 This section outlines the necessary steps to use containerd as CRI runtime.To install containerd on your system, follow the instructions on getting started with containerd. Return to this step once you've created a valid `config.toml` configuration file. You can find this file under the path `/etc/containerd/config.toml`.
 
-On Linux the default CRI socket for containerd is `/run/containerd/containerd.sock`.
+On Linux the default CRI socket for containerd is `/run/containerd/containerd.sock`. Follow the installation process.
 
-Follow the installation process.
 - Set up Docker's apt repository.
 
 ```
@@ -166,14 +163,16 @@ sudo containerd config default | sudo tee /etc/containerd/config.toml
 sudo vi /etc/containerd/config.toml
 ```
 
-5. Restart containerd
+- Restart containerd
+
 ```
 sudo systemctl restart containerd
 sudo systemctl enable containerd
 systemctl status containerd
 ```
 
-6. Enable IP Forwarding
+- Enable IP Forwarding
+
 Enable IP forwarding temporarily and permanently:
 
 a. Temporary option
@@ -192,7 +191,7 @@ Apply the changes:
 sudo sysctl -p
 ```
 
-3. Validate Setup
+- Validate Setup
 After making these changes, validate the container runtime and IP forwarding:
 
 a. Validate Containerd
