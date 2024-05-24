@@ -102,7 +102,18 @@ net.bridge.bridge-nf-call-iptables = 1
 net.ipv4.ip_forward = 1
 ```
 
+Configure persistent loading of modules with the following command
+```
+sudo tee /etc/modules-load.d/k8s.conf <<EOF
+overlay
+br_netfilter
+EOF
+```
 
+Reload sysctl with the following command
+```
+sudo sysctl --system
+```
 
 ## Installing a container runtime
 To run containers in Pods, Kubernetes uses a container runtime. By default, Kubernetes uses the Container Runtime Interface (CRI) to interface with your chosen container runtime. If you don't specify a runtime, kubeadm automatically tries to detect an installed container runtime by scanning through a list of known endpoints. If multiple or no container runtimes are detected `kubeadm` will throw an error and will request that you specify which one you want to use.
