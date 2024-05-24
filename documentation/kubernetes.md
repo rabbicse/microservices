@@ -114,7 +114,7 @@ sudo sysctl --system
 ```
 
 ## Installing a container runtime
-To run containers in Pods, Kubernetes uses a container runtime. By default, Kubernetes uses the Container Runtime Interface (CRI) to interface with your chosen container runtime. If you don't specify a runtime, kubeadm automatically tries to detect an installed container runtime by scanning through a list of known endpoints. If multiple or no container runtimes are detected `kubeadm` will throw an error and will request that you specify which one you want to use. For my lab I have used `containerd` as container runtime.
+To run containers in Pods, Kubernetes uses a container runtime. By default, Kubernetes uses the Container Runtime Interface (CRI) to interface with your chosen container runtime. If you don't specify a runtime, kubeadm automatically tries to detect an installed container runtime by scanning through a list of known endpoints. If multiple or no container runtimes are detected `kubeadm` will throw an error and will request that you specify which one you want to use. For my lab I have used `containerd` as CRI.
 
 ### containerd
 This section outlines the necessary steps to use containerd as CRI runtime.To install containerd on your system, follow the instructions on getting started with containerd. Return to this step once you've created a valid `config.toml` configuration file. You can find this file under the path `/etc/containerd/config.toml`.
