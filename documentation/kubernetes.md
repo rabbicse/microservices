@@ -241,7 +241,6 @@ sudo systemctl enable --now kubelet
 ```
 
 ## Creating a cluster with kubeadm
-
 ### Network setup
 kubeadm similarly to other Kubernetes components tries to find a usable IP on the network interfaces associated with a default gateway on a host. To find out what this IP is on a Linux host you can use:
 
@@ -249,27 +248,24 @@ kubeadm similarly to other Kubernetes components tries to find a usable IP on th
 ip route show # Look for a line starting with "default via"
 ```
 
-### Initializing your control-plane node
+> [!IMPORTANT]
+> Before go to next steps the following criteria must be satisfied.
+> - Worker nodes must be ready!
+> - Need to make sure network connectivity between cluster nodes!
+> - kubectl, kubelet and kubeadm must be installed and enabled
+
+### Initialize control-plane node (Master Node only)
 To initialize the control-plane node run:
 
 ```
 kubeadm init <args>
 ```
 
-### Considerations about apiserver-advertise-address and ControlPlaneEndpoint 
-While `--apiserver-advertise-address` can be used to set the advertise address for this particular control-plane node's API server, `--control-plane-endpoint` can be used to set the shared endpoint for all control-plane nodes.
-
-`--control-plane-endpoint` allows both IP addresses and DNS names that can map to IP addresses. Please contact your network administrator to evaluate possible solutions with respect to such mapping.
-
-Here is an example mapping:
+While `--apiserver-advertise-address` can be used to set the advertise address for this particular control-plane node's API server, `--control-plane-endpoint` can be used to set the shared endpoint for all control-plane nodes. `--control-plane-endpoint` allows both IP addresses and DNS names that can map to IP addresses. Please contact your network administrator to evaluate possible solutions with respect to such mapping. Here is an example mapping:
 
 `192.168.0.193 cluster-endpoint`
 
-Where `192.168.0.193` is the IP address of this node and `cluster-endpoint` is a custom DNS name that maps to this IP. This will allow you to pass `--control-plane-endpoint=cluster-endpoint` to kubeadm init and pass the same DNS name to kubeadm join. Later you can modify `cluster-endpoint` to point to the address of your load-balancer in an high availability scenario.
-
-Turning a single control plane cluster created without `--control-plane-endpoint` into a highly available cluster is not supported by kubeadm.
-
-So write the following command.
+Where `192.168.0.193` is the IP address of this node and `cluster-endpoint` is a custom DNS name that maps to this IP. This will allow you to pass `--control-plane-endpoint=cluster-endpoint` to kubeadm init and pass the same DNS name to kubeadm join. Later you can modify `cluster-endpoint` to point to the address of your load-balancer in an high availability scenario. Turning a single control plane cluster created without `--control-plane-endpoint` into a highly available cluster is not supported by kubeadm. So write the following command.
 ```
 sudo kubeadm init --pod-network-cidr=192.168.0.0/16 --cri-socket=/var/run/containerd/containerd.sock --v=5
 ```
@@ -309,13 +305,13 @@ Then run the following command:
 export KUBECONFIG=/etc/kubernetes/admin.conf
 ```
 
-### Permissions of admin.config
+### Permissions of admin.config (Master Node only)
 Write the following command to set permissions of admin.config
 ```
 sudo chmod -R 755 /etc/kubernetes/admin.conf
 ```
 
-## Join with cluster from worker nodes
+## Join with kubernetes cluster (Worker Node only)
 Write the following similar command to join with master node. Note: this command comes from above output from master.
 ```
 sudo kubeadm join 192.168.0.193:6443 --token 1rc7cy.ln076tz43nj0ghjr \
@@ -337,46 +333,21 @@ CoreDNS is running at https://192.168.0.193:6443/api/v1/namespaces/kube-system/s
 To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 ```
 
-Write to following command to check node status with the following `kubectl` command
-```
-kubectl get nodes -o wide
-```
-
-The output should be the following snippet.
-```
-master@master:~$ kubectl get nodes -o wide
-NAME      STATUS   ROLES           AGE     VERSION   INTERNAL-IP     EXTERNAL-IP   OS-IMAGE           KERNEL-VERSION     CONTAINER-RUNTIME
-master    Ready    control-plane   6m55s   v1.30.1   192.168.0.193   <none>        Ubuntu 24.04 LTS   6.8.0-31-generic   containerd://1.6.31
-worker1   Ready    <none>          4m31s   v1.30.1   192.168.0.143   <none>        Ubuntu 24.04 LTS   6.8.0-31-generic   containerd://1.6.31
-master@master:~$
-```
-
-### Installing a Pod network add-on (Only on master)
-This section contains important information about networking setup and deployment order. Read all of this advice carefully before proceeding.
-
-You must deploy a Container Network Interface (CNI) based Pod network add-on so that your Pods can communicate with each other. Cluster DNS (CoreDNS) will not start up before a network is installed.
-
-Take care that your Pod network must not overlap with any of the host networks: you are likely to see problems if there is any overlap. (If you find a collision between your network plugin's preferred Pod network and some of your host networks, you should think of a suitable CIDR block to use instead, then use that during kubeadm init with --pod-network-cidr and as a replacement in your network plugin's YAML).
-
-By default, kubeadm sets up your cluster to use and enforce use of RBAC (role based access control). Make sure that your Pod network plugin supports RBAC, and so do any manifests that you use to deploy it.
-
-If you want to use IPv6--either dual-stack, or single-stack IPv6 only networking--for your cluster, make sure that your Pod network plugin supports IPv6. IPv6 support was added to CNI in v0.6.0.
-
-### Enable API Server
-Check the Kubernetes API server's address and port configuration. Typically, the API server runs on port 6443. Make sure the kube-apiserver is correctly configured to bind to the appropriate address.
+## Install Pod network add-on (Only on Master Node)
+This section contains important information about networking setup and deployment order. Read all of this advice carefully before proceeding. You must deploy a Container Network Interface (CNI) based Pod network add-on so that your Pods can communicate with each other. Cluster DNS (CoreDNS) will not start up before a network is installed. Take care that your Pod network must not overlap with any of the host networks: you are likely to see problems if there is any overlap. (If you find a collision between your network plugin's preferred Pod network and some of your host networks, you should think of a suitable CIDR block to use instead, then use that during kubeadm init with --pod-network-cidr and as a replacement in your network plugin's YAML).
 
 ### Install calico
-So install calico on kubernetes cluster by following the [link](https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart)
+Check the Kubernetes API server's address and port configuration. Typically, the API server runs on port 6443. Make sure the kube-apiserver is correctly configured to bind to the appropriate address. So install calico on kubernetes cluster by following the [link](https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart)
 
-1. Install the Tigera Calico operator and custom resource definitions.
+- Install the Tigera Calico operator and custom resource definitions.
 ```
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/tigera-operator.yaml
 ```
-2. Install Calico by creating the necessary custom resource.
+- Install Calico by creating the necessary custom resource.
 ```
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/custom-resources.yaml
 ```
-3. Confirm that all of the pods are running with the following command.
+- Confirm that all of the pods are running with the following command.
 ```
 watch kubectl get pods -n calico-system
 ```
@@ -408,6 +379,37 @@ calico-node-vgp2q                          1/1     Running   0          2m10s
 calico-typha-7dc95cc6b6-xp6hn              1/1     Running   0          2m10s
 csi-node-driver-qkd26                      2/2     Running   0          2m10s
 csi-node-driver-twg5q                      2/2     Running   0          2m10
+```
+
+Check the Kubernetes API server's address and port configuration. Typically, the API server runs on port 6443. Make sure the kube-apiserver is correctly configured to bind to the appropriate address.
+
+### Check cluster status
+Write the following command to check cluster status
+```
+kubectl cluster-info
+```
+
+It should produce the output like the following snippet
+```
+master@master:~$ kubectl cluster-info
+Kubernetes control plane is running at https://192.168.0.193:6443
+CoreDNS is running at https://192.168.0.193:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+```
+
+Write to following command to check node status with the following `kubectl` command
+```
+kubectl get nodes -o wide
+```
+
+The output should be the following snippet.
+```
+master@master:~$ kubectl get nodes -o wide
+NAME      STATUS   ROLES           AGE     VERSION   INTERNAL-IP     EXTERNAL-IP   OS-IMAGE           KERNEL-VERSION     CONTAINER-RUNTIME
+master    Ready    control-plane   6m55s   v1.30.1   192.168.0.193   <none>        Ubuntu 24.04 LTS   6.8.0-31-generic   containerd://1.6.31
+worker1   Ready    <none>          4m31s   v1.30.1   192.168.0.143   <none>        Ubuntu 24.04 LTS   6.8.0-31-generic   containerd://1.6.31
+master@master:~$
 ```
 
 ### Deploy first hello pod to kubernetes cluster
@@ -564,6 +566,9 @@ master@master:~$
 ```
 
 ## References
+- https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/
+- https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart
 - https://helm.sh/docs/intro/install/
 - https://github.com/kubernetes/dashboard
 - https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md
+- https://computingforgeeks.com/install-kubernetes-cluster-ubuntu-jammy/
