@@ -311,26 +311,17 @@ Write the following command to set permissions of admin.config
 sudo chmod -R 755 /etc/kubernetes/admin.conf
 ```
 
+> [!IMPORTANT]
+> To reset kubeadm config need to write the following command:
+> ```
+> sudo kubeadm reset -f
+> ```
+
 ## Join with kubernetes cluster (Worker Node only)
 Write the following similar command to join with master node. Note: this command comes from above output from master.
 ```
 sudo kubeadm join 192.168.0.193:6443 --token 1rc7cy.ln076tz43nj0ghjr \
 	--discovery-token-ca-cert-hash sha256:a6c7f7d99f35fec5f274d50fd1120bebd7c518b4eaa8174ebcba87fbd33c7677
-```
-
-### Check cluster status
-Write the following command to check cluster status
-```
-kubectl cluster-info
-```
-
-It should produce the output like the following snippet
-```
-master@master:~$ kubectl cluster-info
-Kubernetes control plane is running at https://192.168.0.193:6443
-CoreDNS is running at https://192.168.0.193:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
-
-To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 ```
 
 ## Install Pod network add-on (Only on Master Node)
@@ -509,6 +500,32 @@ Now write the following command to check status
 kubectl -n kubernetes-dashboard get svc -o wide
 ```
 
+### Install screen (optional)
+To run any service in background we can use screen. To install it write the following command.
+```
+sudo apt-get install screen
+```
+To attach any service to screen write the following command.
+```
+screen -S <screen-name>
+```
+
+An example:
+```
+screen -S kubernetes-dashboard
+```
+Then just write commands whatever need to run services. To detach from screen just `Ctrl+A` and `Ctrl+D` to detach from screen.
+
+To re-attach screen again just write the following command:
+```
+screen -dr <screen-name>
+```
+Example:
+```
+screen -dr kubernetes-dashboard
+```
+
+### Port forwarding for kubernetes-dashboard
 To access Dashboard run:
 ```
 kubectl -n kubernetes-dashboard port-forward --address 0.0.0.0 svc/kubernetes-dashboard-kong-proxy 8443:443
@@ -523,8 +540,13 @@ https://192.168.0.193:8443
 
 In this guide, we will find out how to create a new user using the Service Account mechanism of Kubernetes, grant this user admin permissions and login to Dashboard using a bearer token tied to this user.
 
-For each of the following snippets for ServiceAccount and ClusterRoleBinding, you should copy them to new manifest files like dashboard-adminuser.yaml and use kubectl apply -f dashboard-adminuser.yaml to create them.
+For each of the following snippets for ServiceAccount and ClusterRoleBinding, you should copy them to new manifest files like dashboard-adminuser.yaml and use the following command
+```
+kubectl apply -f dashboard-adminuser.yaml
+```
+to create them.
 
+**dashboard-adminuser.yaml**
 ```
 apiVersion: v1
 kind: ServiceAccount
@@ -535,8 +557,13 @@ metadata:
 
 ### Creating a ClusterRoleBinding
 
-In most cases after provisioning the cluster using kops, kubeadm or any other popular tool, the ClusterRole cluster-admin already exists in the cluster. We can use it and create only a ClusterRoleBinding for our ServiceAccount. If it does not exist then you need to create this role first and grant required privileges manually.
+In most cases after provisioning the cluster using kops, kubeadm or any other popular tool, the ClusterRole cluster-admin already exists in the cluster. We can use it and create only a ClusterRoleBinding for our ServiceAccount. If it does not exist then you need to create this role first and grant required privileges manually. Write the following command.
 
+```
+kubectl apply -f cluster-role.yaml
+```
+
+**cluster-role.yaml**
 ```
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
