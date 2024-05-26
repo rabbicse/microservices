@@ -265,7 +265,10 @@ While `--apiserver-advertise-address` can be used to set the advertise address f
 
 `192.168.0.193 cluster-endpoint`
 
-Where `192.168.0.193` is the IP address of this node and `cluster-endpoint` is a custom DNS name that maps to this IP. This will allow you to pass `--control-plane-endpoint=cluster-endpoint` to kubeadm init and pass the same DNS name to kubeadm join. Later you can modify `cluster-endpoint` to point to the address of your load-balancer in an high availability scenario. Turning a single control plane cluster created without `--control-plane-endpoint` into a highly available cluster is not supported by kubeadm. So write the following command.
+Where `192.168.0.193` is the IP address of this node and `cluster-endpoint` is a custom DNS name that maps to this IP. This will allow you to pass `--control-plane-endpoint=cluster-endpoint` to kubeadm init and pass the same DNS name to kubeadm join. Later you can modify `cluster-endpoint` to point to the address of your load-balancer in an high availability scenario. Turning a single control plane cluster created without `--control-plane-endpoint` into a highly available cluster is not supported by kubeadm. 
+
+### Bootstrap without shared endpoint (IP address for control plane API)
+So write the following command.
 ```
 sudo kubeadm init --pod-network-cidr=192.168.0.0/16 --cri-socket=/var/run/containerd/containerd.sock --v=5
 ```
@@ -291,6 +294,58 @@ Then you can join any number of worker nodes by running the following on each as
 kubeadm join 192.168.0.193:6443 --token 1rc7cy.ln076tz43nj0ghjr \
 	--discovery-token-ca-cert-hash sha256:a6c7f7d99f35fec5f274d50fd1120bebd7c518b4eaa8174ebcba87fbd33c7677 
 ```
+
+### Bootstrap with shared endpoint (DNS name for control plane API)
+Set cluster endpoint DNS name or add record to `/etc/hosts` file.
+
+```shell
+sudo vi /etc/hosts
+```
+
+Then append the following line as per this lab setup.
+
+```shell
+192.168.0.193 k8s-cluster.mehmet.com
+```
+
+Then run the following command at master node.
+
+```shell
+sudo kubeadm init --pod-network-cidr=192.168.0.0/16 --cri-socket=/var/run/containerd/containerd.sock --control-plane-endpoint=k8s-cluster.mehmet.com --v=5
+```
+
+It'll produce output like the following snippet.
+
+```shell
+Your Kubernetes control-plane has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Alternatively, if you are the root user, you can run:
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+You can now join any number of control-plane nodes by copying certificate authorities
+and service account keys on each node and then running the following as root:
+
+  kubeadm join k8s-cluster.mehmet.com:6443 --token zi6rfb.2kglyyg5szrfoa75 \
+	--discovery-token-ca-cert-hash sha256:3e36e8fb8a7e238aed25e1a247b08e03cb42f93051586a293a87f356ea3b0f12 \
+	--control-plane 
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join k8s-cluster.mehmet.com:6443 --token zi6rfb.2kglyyg5szrfoa75 \
+	--discovery-token-ca-cert-hash sha256:3e36e8fb8a7e238aed25e1a247b08e03cb42f93051586a293a87f356ea3b0f12
+```
+
 
 Note down the above output carefully and follow the instructions carefully for next steps. 
 First write the following commands
