@@ -317,13 +317,6 @@ sudo chmod -R 755 /etc/kubernetes/admin.conf
 > sudo kubeadm reset -f
 > ```
 
-## Join with kubernetes cluster (Worker Node only)
-Write the following similar command to join with master node. Note: this command comes from above output from master.
-```
-sudo kubeadm join 192.168.0.193:6443 --token 1rc7cy.ln076tz43nj0ghjr \
-	--discovery-token-ca-cert-hash sha256:a6c7f7d99f35fec5f274d50fd1120bebd7c518b4eaa8174ebcba87fbd33c7677
-```
-
 ## Install Pod network add-on (Only on Master Node)
 This section contains important information about networking setup and deployment order. Read all of this advice carefully before proceeding. You must deploy a Container Network Interface (CNI) based Pod network add-on so that your Pods can communicate with each other. Cluster DNS (CoreDNS) will not start up before a network is installed. Take care that your Pod network must not overlap with any of the host networks: you are likely to see problems if there is any overlap. (If you find a collision between your network plugin's preferred Pod network and some of your host networks, you should think of a suitable CIDR block to use instead, then use that during kubeadm init with --pod-network-cidr and as a replacement in your network plugin's YAML).
 
@@ -373,6 +366,13 @@ csi-node-driver-twg5q                      2/2     Running   0          2m10
 ```
 
 Check the Kubernetes API server's address and port configuration. Typically, the API server runs on port 6443. Make sure the kube-apiserver is correctly configured to bind to the appropriate address.
+
+## Join with kubernetes cluster (Worker Node only)
+Write the following similar command to join with master node. Note: this command comes from above output from master.
+```
+sudo kubeadm join 192.168.0.193:6443 --token 1rc7cy.ln076tz43nj0ghjr \
+	--discovery-token-ca-cert-hash sha256:a6c7f7d99f35fec5f274d50fd1120bebd7c518b4eaa8174ebcba87fbd33c7677
+```
 
 ### Check cluster status
 Write the following command to check cluster status
@@ -440,7 +440,7 @@ hello-pod   1/1     Running   0          72s   192.168.235.132   worker1   <none
 master@master:~$
 ```
 
-### Kubernetes Dashboard 
+## Kubernetes Dashboard (Master Node Only)
 Dashboard is a web-based Kubernetes user interface. You can use Dashboard to deploy containerized applications to a Kubernetes cluster, troubleshoot your containerized application, and manage the cluster resources. You can use Dashboard to get an overview of applications running on your cluster, as well as for creating or modifying individual Kubernetes resources (such as Deployments, Jobs, DaemonSets, etc). For example, you can scale a Deployment, initiate a rolling update, restart a pod or deploy new applications using a deploy wizard.
 
 Dashboard also provides information on the state of Kubernetes resources in your cluster and on any errors that may have occurred.
@@ -536,6 +536,9 @@ Now access dashboard from the following url, for my case ip address is `192.168.
 https://192.168.0.193:8443
 ```
 
+Open url on web browser and after redirection to login screen you should show the screen 
+![Sing in](https://github.com/rabbicse/microservices/blob/master/screenshots/kubernetes/kubernetes-dashboard-default.png)
+
 ### Creating sample user
 
 In this guide, we will find out how to create a new user using the Service Account mechanism of Kubernetes, grant this user admin permissions and login to Dashboard using a bearer token tied to this user.
@@ -591,6 +594,12 @@ master@master:~$ kubectl -n kubernetes-dashboard create token admin-user
 eyJhbGciOiJSUzI1NiIsImtpZCI6IjJYaXFaNVpPMXlaSUNsTGhkLXVtLXRtb2dwWTAtWkNuZlNqMzNkMU1sVVEifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoxNzE2NDAyODUxLCJpYXQiOjE3MTYzOTkyNTEsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwianRpIjoiMDIxMjY2YjMtODE0OC00NjRhLTgzMjMtMjM4NzMyOTUwODk2Iiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsInNlcnZpY2VhY2NvdW50Ijp7Im5hbWUiOiJhZG1pbi11c2VyIiwidWlkIjoiYzA3MjI3ODgtOGJiZS00MmNhLThkYWUtZDQ1YzA5ZWU2ZmNmIn19LCJuYmYiOjE3MTYzOTkyNTEsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlcm5ldGVzLWRhc2hib2FyZDphZG1pbi11c2VyIn0.sP-Qcrh37iZ4_Xc9K04SaGyBrfFfzoXFZJwJgh4YU7zMoKzbE7rafXajD18UtNKrwFZA30Bp157uxDy6OqmVKL4YA_k5P1TyVNFSK4LfMtfx9XHUFhxGvItnE7MDPyc1D4u1Ib5-K-x3ZwYnTToX3IgY8vwh5mVs32bYBfgAKg4KqbHt2T0c00Ow4D79O-GVlp4Opc92auRYzLG-Ks7x-kS24ZVePJgUuQ7aowP2e5IPnjK1hIrZE44TeWyuCdnGn15SglybuQRzWVScfwcM3Yo0y09nw3CwvCmShONOOzHg857Tn6amwXWvHDKn4jwyDZnQJg22UXfdPFHIlEuptA
 master@master:~$
 ```
+
+Now copy the `token` and paste it into the Enter token field on the login screen. Click the Sign in button and that's it. You are now logged in as an admin. You should show the screen like the following screenshot.
+
+![Home](https://github.com/rabbicse/microservices/blob/master/screenshots/kubernetes/kubernetes-dashboard-home.png)
+
+For more details please visit [here](https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md)
 
 ## References
 - https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/
