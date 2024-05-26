@@ -12,12 +12,11 @@ _Note: This chart was formerly named `prometheus-operator` chart, now renamed to
 
 ## Get Helm Repository Info
 
-```console
+```shell
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
 ```
 
-_See [`helm repo`](https://helm.sh/docs/helm/helm_repo/) for command documentation._
 
 ## References
 - [Kube Prometheus Stack](https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/)
