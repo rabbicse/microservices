@@ -254,7 +254,7 @@ Turning a single control plane cluster created without `--control-plane-endpoint
 
 So write the following command.
 ```
-sudo kubeadm init --cri-socket unix:///var/run/containerd/containerd.sock --v=5
+sudo kubeadm init --cri-socket /var/run/containerd/containerd.sock --v=5
 ```
 
 It'll produce output like the following snippet.
@@ -306,4 +306,9 @@ wget https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/ti
 sudo kubectl apply -f tigera-operator.yaml -validate=false
 ```
 
-
+### Kubernetes Dashboard Install helm
+```
+https://helm.sh/docs/intro/install/
+https://github.com/kubernetes/dashboard
+https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md
+```
