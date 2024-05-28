@@ -59,3 +59,4 @@ kube-prometheus-stack-58-prometheus-node-exporter-q8lbq        1/1     Running  
 ## References
 - [Kube Prometheus Stack](https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/)
 - [Install Prometheus and Grafana on Kubernetes using prometheus-operator](https://computingforgeeks.com/setup-prometheus-and-grafana-on-kubernetes/)
+- [Access UI] (https://github.com/prometheus-operator/kube-prometheus/blob/main/docs/access-ui.md)
