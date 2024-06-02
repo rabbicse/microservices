@@ -101,6 +101,7 @@ Forwarding from 0.0.0.0:9090 -> 9090
 Detach from screen by `Ctrl+A+D`
 
 Now browse the url: `http://<host-name>:9090` for my case it's `http://192.168.0.193:9090` You should see the screen like the following screenshot.
+
 ![image](https://github.com/rabbicse/microservices/blob/master/screenshots/kubernetes/kubernetes-prometheus.png)
 
 ### Access grafana UI
@@ -126,6 +127,7 @@ Forwarding from 0.0.0.0:3000 -> 3000
 Detach from screen by `Ctrl+A+D`
 
 Now browse the url: `http://<host-name>:3000` for my case it's `http://192.168.0.193:3000` You should see the screen like the following screenshot.
+
 ![image](https://github.com/rabbicse/microservices/blob/master/screenshots/kubernetes/kubernetes-grafana.png)
 
 Login with default user/password => `admin/prom-operator`.
@@ -152,6 +154,7 @@ Forwarding from 0.0.0.0:9093 -> 9093
 Detach from screen by `Ctrl+A+D`
 
 Now browse the url: `http://<host-name>:9093` for my case it's `http://192.168.0.193:9093` You should see the screen like the following screenshot.
+
 ![image](https://github.com/rabbicse/microservices/blob/master/screenshots/kubernetes/kubernetes-alertmanager.png)
 
 
