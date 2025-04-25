@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<body>
+    <h1>{{.Name}}</h1>
+    <img width="100" src="{{.Logo}}" />
+    <p>Requesting access to {{.Website}} with the following scopes: </p>
+    <ul>
+        {{range $score := .Scopes}}
+        <li>{{$score}}</li>
+        {{end}}
+    </ul>
+    <form action="confirm_auth">
+        <button type="submit" name="authorize" value="true">Authorize</button>
+        <button type="submit" name="authorize" value="false">Deny</button>
+        <input type="hidden" name="client_id" value="{{.Name}}" />
+    </form>
+</body>
+</html>
