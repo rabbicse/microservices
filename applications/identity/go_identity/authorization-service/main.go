@@ -37,6 +37,12 @@ type AuthRequest struct {
 	State        string
 }
 
+type ConfirmAuthRequest struct {
+	Authorize bool   `json:"authorize" query:"authorize"`
+	ClientID  string `json:"client_id" query:"client_id"`
+	State     string
+}
+
 func main() {
 	err := godotenv.Load()
 	if err != nil {
@@ -96,6 +102,12 @@ func main() {
 			})
 		}
 
+		if authRequest.State == "" {
+			return c.Status(400).JSON(fiber.Map{
+				"error": "Invalid request",
+			})
+		}
+
 		if authRequest.ResponseType != "code" {
 			return c.Status(400).JSON(fiber.Map{
 				"error": "Invalid request",
@@ -142,8 +154,38 @@ func main() {
 			"Logo":    client.Logo,
 			"Name":    client.Name,
 			"Website": client.Website,
+			"State":   authRequest.State,
 			"Scopes":  strings.Split(authRequest.Scope, " "),
 		})
+	})
+
+	api.Get("/confirm_auth", func(ctx *fiber.Ctx) error {
+		tempCode := ctx.Cookies("auth_request_code")
+
+		if tempCode == "" {
+			return ctx.Status(400).JSON(fiber.Map{
+				"error": "Invalid request",
+			})
+		}
+
+		confirmAuthRequest := new(ConfirmAuthRequest)
+		if err := ctx.QueryParser(confirmAuthRequest); err != nil {
+			return ctx.Status(400).JSON(fiber.Map{"error": "invalid request"})
+		}
+
+		// check for client
+		client := new(Client)
+		if err := db.Where("name = ?", confirmAuthRequest.ClientID).First(&client).Error; err != nil {
+			return ctx.Status(400).JSON(fiber.Map{
+				"error": "Invalid request",
+			})
+		}
+
+		if !confirmAuthRequest.Authorize {
+			return ctx.Redirect(client.RedirectURI + "?error=access_denied" + "&state=" + confirmAuthRequest.State)
+		}
+
+		return ctx.Redirect(client.RedirectURI + "?code=" + tempCode + "&state=" + confirmAuthRequest.State)
 	})
 
 	port := os.Getenv("PORT")
