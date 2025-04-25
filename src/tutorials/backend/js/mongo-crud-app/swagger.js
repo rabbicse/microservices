@@ -1,25 +1,16 @@
-// const swaggerAutogen = require('swagger-autogen')({openapi: '3.1.0'});
-
-// const outputFile = './swagger_output.json'
-// const endpointsFiles = ['./routes/product.route.js']
-
-// swaggerAutogen(outputFile, endpointsFiles);
-
 const swaggerAutogen = require("swagger-autogen")({ openapi: "3.1.0" });
 
 const doc = {
   info: {
-    version: "", // by default: '1.0.0'
-    title: "", // by default: 'REST API'
-    description: "", // by default: ''
+    version: "", // by default: "1.0.0"
+    title: "", // by default: "REST API"
+    description: "", // by default: ""
   },
-  servers: [
-    {
-      url: "", // by default: 'http://localhost:3000'
-      description: "", // by default: ''
-    },
-    // { ... }
-  ],
+  host: "", // by default: "localhost:3000"
+  basePath: "", // by default: "/"
+  schemes: [], // by default: ['http']
+  consumes: [], // by default: ['application/json']
+  produces: [], // by default: ['application/json']
   tags: [
     // by default: empty Array
     {
@@ -28,13 +19,14 @@ const doc = {
     },
     // { ... }
   ],
-  components: {}, // by default: empty object
+  securityDefinitions: {}, // by default: empty object
+  definitions: {}, // by default: empty object
 };
 
 const outputFile = "./swagger.json";
-const routes = ['./server.js', './models/product.model.js'];
+const routes = ["./server.js", "./models/product.model.js"];
 
 /* NOTE: If you are using the express Router, you must pass in the 'routes' only the 
 root file where the route starts, such as index.js, app.js, routes.js, etc ... */
 
-swaggerAutogen(outputFile, routes);
+swaggerAutogen(outputFile, routes, doc);

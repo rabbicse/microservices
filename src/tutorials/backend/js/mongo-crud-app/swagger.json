@@ -5,11 +5,15 @@
     "title": "REST API",
     "description": ""
   },
-  "servers": [
+  "host": "",
+  "basePath": "",
+  "tags": [
     {
-      "url": "http://localhost:3000/"
+      "name": "",
+      "description": ""
     }
   ],
+  "securityDefinitions": {},
   "paths": {
     "/": {
       "get": {

@@ -22,3 +22,19 @@ npm install express --save
 npm install nodemon --save-dev
 npx nodemon index.js
 ```
+
+Then write the following commands
+```
+mkdir {app,db}
+mv models ./app/models
+mv migrations ./db/migrations
+mv seeders ./db/seeders
+mv config/config.json config/database.js
+```
+
+## Install sequalize package
+```
+docker compose exec web npm install sequelize --save
+docker compose exec web npm install sequelize-cli --save-dev    
+docker compose exec web npx sequelize-cli init
+```
