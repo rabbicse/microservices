@@ -2,6 +2,7 @@ package main
 
 import (
 	"crypto/rand"
+	"database/sql"
 	"fmt"
 	"os"
 	"strings"
@@ -11,6 +12,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/template/html/v2"
+	"github.com/golang-jwt/jwt/v4"
 	"github.com/joho/godotenv"
 	"github.com/lucsky/cuid"
 	"gorm.io/driver/postgres"
@@ -19,14 +21,16 @@ import (
 )
 
 type Client struct {
-	Id          int    `gorm:"primaryKey"`
-	Name        string `gorm:"uniqueIndex"`
-	Website     string
-	Logo        string
-	RedirectURI string    `json:"redirect_uri"`
-	CreatedAt   time.Time `json:"created_at"`
-	UpdatedAt   time.Time `json:"updated_at"`
-	DeletedAt   time.Time `json:"-" gorm:"index"`
+	Id           int    `gorm:"primaryKey"`
+	Name         string `gorm:"uniqueIndex"`
+	ClientSecret string `json:"client_secret"`
+	Website      string
+	Logo         string
+	Code         sql.NullString `gorm:"default null"`
+	RedirectURI  string         `json:"redirect_uri"`
+	CreatedAt    time.Time      `json:"created_at"`
+	UpdatedAt    time.Time      `json:"updated_at"`
+	DeletedAt    time.Time      `json:"-" gorm:"index"`
 }
 
 type AuthRequest struct {
@@ -41,6 +45,19 @@ type ConfirmAuthRequest struct {
 	Authorize bool   `json:"authorize" query:"authorize"`
 	ClientID  string `json:"client_id" query:"client_id"`
 	State     string
+}
+
+type TokenRequest struct {
+	GrantType    string `json:"grant_type"`
+	Code         string
+	RedirectURI  string `json:"redirect_uri"`
+	ClientID     string `json:"client_id"`
+	ClientSecret string `json:"client_secret"`
+}
+
+type TokenResponse struct {
+	AccessToken string `json:"access_token"`
+	ExpiresIn   int    `json:"expires_in"`
 }
 
 func main() {
@@ -62,17 +79,24 @@ func main() {
 	// Migrate the schema
 	db.AutoMigrate(&Client{})
 
+	// Client secret
+	clientSecret, err := cuid.NewCrypto(rand.Reader)
+	if err != nil {
+		panic("failed to create new crypto")
+	}
+
 	// Create
 	db.Clauses(clause.OnConflict{
 		Columns:   []clause.Column{{Name: "id"}},
-		DoUpdates: clause.AssignmentColumns([]string{"name", "website", "redirected_uri", "logo"}),
+		DoUpdates: clause.AssignmentColumns([]string{"name", "website", "redirected_uri", "logo", "client_secret"}),
 	})
 	db.Create(&Client{
-		Id:          1,
-		Name:        "Mehmet",
-		Website:     "http://test.com",
-		RedirectURI: "http://localhost:8080/auth/callback",
-		Logo:        "https://placehold.co/600x400",
+		Id:           1,
+		Name:         "Mehmet",
+		ClientSecret: clientSecret,
+		Website:      "http://test.com",
+		RedirectURI:  "http://localhost:8080/auth/callback",
+		Logo:         "https://placehold.co/600x400",
 	})
 
 	views := html.New("./views", ".html")
@@ -164,28 +188,104 @@ func main() {
 
 		if tempCode == "" {
 			return ctx.Status(400).JSON(fiber.Map{
-				"error": "Invalid request",
+				"error": "Invalid request auth_request_code",
 			})
 		}
 
 		confirmAuthRequest := new(ConfirmAuthRequest)
 		if err := ctx.QueryParser(confirmAuthRequest); err != nil {
-			return ctx.Status(400).JSON(fiber.Map{"error": "invalid request"})
+			return ctx.Status(400).JSON(fiber.Map{"error": fmt.Sprintf("invalid request: %v", err)})
 		}
 
 		// check for client
 		client := new(Client)
 		if err := db.Where("name = ?", confirmAuthRequest.ClientID).First(&client).Error; err != nil {
-			return ctx.Status(400).JSON(fiber.Map{
-				"error": "Invalid request",
-			})
+			return ctx.Status(400).JSON(fiber.Map{"error": fmt.Sprintf("invalid request: %v", err)})
 		}
 
 		if !confirmAuthRequest.Authorize {
 			return ctx.Redirect(client.RedirectURI + "?error=access_denied" + "&state=" + confirmAuthRequest.State)
 		}
 
+		// save generated auth code to client table
+		db.Model(&client).Update("code", tempCode)
+
 		return ctx.Redirect(client.RedirectURI + "?code=" + tempCode + "&state=" + confirmAuthRequest.State)
+	})
+
+	api.Post("/token", func(ctx *fiber.Ctx) error {
+		tokenRequest := new(TokenRequest)
+		if err := ctx.BodyParser(tokenRequest); err != nil {
+			return ctx.Status(400).JSON(fiber.Map{"error": fmt.Sprintf("invalid request: %v", err)})
+		}
+
+		if tokenRequest.ClientID == "" {
+			return ctx.Status(400).JSON(fiber.Map{
+				"error": "Invalid request",
+			})
+		}
+
+		if tokenRequest.Code == "" {
+			return ctx.Status(400).JSON(fiber.Map{
+				"error": "Invalid request",
+			})
+		}
+
+		if tokenRequest.RedirectURI == "" {
+			return ctx.Status(400).JSON(fiber.Map{
+				"error": "Invalid request",
+			})
+		}
+
+		if tokenRequest.GrantType == "" {
+			return ctx.Status(400).JSON(fiber.Map{
+				"error": "Invalid request",
+			})
+		}
+
+		if tokenRequest.ClientSecret == "" {
+			return ctx.Status(400).JSON(fiber.Map{
+				"error": "Invalid request",
+			})
+		}
+
+		// check for client
+		client := new(Client)
+		if err := db.Where("name = ?", tokenRequest.ClientID).First(&client).Error; err != nil {
+			return ctx.Status(404).JSON(fiber.Map{"error": fmt.Sprintf("invalid request: %v", err)})
+		}
+
+		// validate client and code
+		if !client.Code.Valid {
+			return ctx.Status(400).JSON(fiber.Map{
+				"error": "Invalid request",
+			})
+		}
+
+		if tokenRequest.Code != client.Code.String {
+			return ctx.Status(400).JSON(fiber.Map{
+				"error": "Invalid request",
+			})
+		}
+
+		token := jwt.New(jwt.SigningMethodHS256)
+
+		claims := token.Claims.(jwt.MapClaims)
+		// claims["username"] = userData.Username
+		// claims["user_id"] = userData.ID
+		claims["exp"] = time.Now().Add(time.Hour * 72).Unix()
+
+		accessToken, err := token.SignedString([]byte(client.ClientSecret))
+		if err != nil {
+			return ctx.SendStatus(fiber.StatusInternalServerError)
+		}
+
+		tokenResponse := new(TokenResponse)
+		tokenResponse.AccessToken = accessToken
+		tokenResponse.ExpiresIn = 3600
+
+		// Generate the access token
+		return ctx.Status(200).JSON(tokenResponse)
 	})
 
 	port := os.Getenv("PORT")
