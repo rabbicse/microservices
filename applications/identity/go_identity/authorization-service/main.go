@@ -46,12 +46,13 @@ type NewUserResponse struct {
 }
 
 type User struct {
-	Id        uuid.UUID `gorm:"primaryKey"`
-	Email     string    `gorm:"uniqueIndex"`
-	Password  string    `json:"-"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
-	DeletedAt time.Time `json:"-" gorm:"index"`
+	Id        uuid.UUID      `gorm:"primaryKey" json:"id"`
+	Email     string         `gorm:"uniqueIndex" json:"email"`
+	Password  string         `json:"-"`
+	Code      sql.NullString `gorm:"default null"`
+	CreatedAt time.Time      `json:"created_at"`
+	UpdatedAt time.Time      `json:"updated_at"`
+	DeletedAt time.Time      `json:"-" gorm:"index"`
 }
 
 func NewUser(req *NewUserRequest) *User {
@@ -76,6 +77,8 @@ type AuthRequest struct {
 }
 
 type ConfirmAuthRequest struct {
+	Identity  string `json:"identity"`
+	Password  string `json:"password"`
 	Authorize bool   `json:"authorize" query:"authorize"`
 	ClientID  string `json:"client_id" query:"client_id"`
 	State     string
@@ -97,6 +100,11 @@ type TokenResponse struct {
 func hashPassword(password string) (string, error) {
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
 	return string(bytes), err
+}
+
+func CheckPasswordHash(password, hash string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+	return err == nil
 }
 
 func main() {
@@ -262,14 +270,49 @@ func main() {
 			return ctx.Status(400).JSON(fiber.Map{"error": fmt.Sprintf("invalid request: %v", err)})
 		}
 
+		// validate parameters
+		if confirmAuthRequest.ClientID == "" {
+			return ctx.Status(400).JSON(fiber.Map{
+				"error": "Invalid request",
+			})
+		}
+
+		if confirmAuthRequest.State == "" {
+			return ctx.Status(400).JSON(fiber.Map{
+				"error": "Invalid request",
+			})
+		}
+
+		if confirmAuthRequest.Identity == "" {
+			return ctx.Status(400).JSON(fiber.Map{
+				"error": "Invalid request",
+			})
+		}
+
+		if confirmAuthRequest.Password == "" {
+			return ctx.Status(400).JSON(fiber.Map{
+				"error": "Invalid request",
+			})
+		}
+
 		// check for client
 		client := new(Client)
 		if err := db.Where("name = ?", confirmAuthRequest.ClientID).First(&client).Error; err != nil {
-			return ctx.Status(400).JSON(fiber.Map{"error": fmt.Sprintf("invalid request: %v", err)})
+			return ctx.Status(404).JSON(fiber.Map{"error": fmt.Sprintf("invalid client request: %v", err)})
 		}
 
 		if !confirmAuthRequest.Authorize {
 			return ctx.Redirect(client.RedirectURI + "?error=access_denied" + "&state=" + confirmAuthRequest.State)
+		}
+
+		// fetch the user
+		user := new(User)
+		if err := db.Where("email = ?", confirmAuthRequest.Identity).First(&user).Error; err != nil {
+			return ctx.Status(404).JSON(fiber.Map{"error": fmt.Sprintf("invalid user request: %v", err)})
+		}
+
+		if !CheckPasswordHash(confirmAuthRequest.Password, user.Password) {
+			return ctx.Status(401).JSON(fiber.Map{"error": fmt.Sprintf("user not authorized: %v", err)})
 		}
 
 		// save generated auth code to client table
@@ -333,11 +376,17 @@ func main() {
 			})
 		}
 
+		// check for client
+		user := new(User)
+		if err := db.Where("code = ?", client.Code.String).First(&user).Error; err != nil {
+			return ctx.Status(404).JSON(fiber.Map{"error": fmt.Sprintf("user not found: %v", err)})
+		}
+
 		token := jwt.New(jwt.SigningMethodHS256)
 
 		claims := token.Claims.(jwt.MapClaims)
-		// claims["username"] = userData.Username
-		// claims["user_id"] = userData.ID
+		claims["email"] = user.Email
+		claims["user_id"] = user.Id
 		claims["exp"] = time.Now().Add(time.Hour * 72).Unix()
 
 		accessToken, err := token.SignedString([]byte(client.ClientSecret))

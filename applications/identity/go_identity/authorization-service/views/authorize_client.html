@@ -9,6 +9,10 @@
         {{end}}
     </ul>
     <form action="confirm_auth">
+        <label for="identity">Identity</label>
+        <input type="text" name="identity" />
+        <label for="password">Password</label>
+        <input type="password" name="password" />
         <button type="submit" name="authorize" value="true">Authorize</button>
         <button type="submit" name="authorize" value="false">Deny</button>
         <input type="hidden" name="client_id" value="{{.Name}}" />
