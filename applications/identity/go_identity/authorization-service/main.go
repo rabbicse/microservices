@@ -13,6 +13,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/template/html/v2"
 	"github.com/golang-jwt/jwt/v4"
+	"github.com/google/uuid"
 	"github.com/joho/godotenv"
 	"github.com/lucsky/cuid"
 	"golang.org/x/crypto/bcrypt"
@@ -34,18 +35,36 @@ type Client struct {
 	DeletedAt    time.Time      `json:"-" gorm:"index"`
 }
 
+type NewUserRequest struct {
+	Email    string
+	Password string
+}
+
 type NewUserResponse struct {
-	ID    int
+	ID    uuid.UUID
 	Email string
 }
 
 type User struct {
-	Id        int    `gorm:"primaryKey"`
-	Email     string `gorm:"uniqueIndex"`
-	Password  string
+	Id        uuid.UUID `gorm:"primaryKey"`
+	Email     string    `gorm:"uniqueIndex"`
+	Password  string    `json:"-"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 	DeletedAt time.Time `json:"-" gorm:"index"`
+}
+
+func NewUser(req *NewUserRequest) *User {
+	hashedPassword, err := hashPassword(req.Password)
+	if err != nil {
+		panic("failed to hash password")
+	}
+
+	return &User{
+		Id:       uuid.New(),
+		Email:    req.Email,
+		Password: hashedPassword,
+	}
 }
 
 type AuthRequest struct {
@@ -97,7 +116,7 @@ func main() {
 	}
 
 	// Migrate the schema
-	db.AutoMigrate(&Client{})
+	db.AutoMigrate(&Client{}, &User{})
 
 	// Client secret
 	clientSecret, err := cuid.NewCrypto(rand.Reader)
@@ -133,40 +152,29 @@ func main() {
 	})
 
 	api.Post("/user", func(ctx *fiber.Ctx) error {
-		user := new(User)
-		if err := ctx.BodyParser(user); err != nil {
+		userReq := new(NewUserRequest)
+		if err := ctx.BodyParser(userReq); err != nil {
 			return ctx.Status(400).JSON(fiber.Map{"error": fmt.Sprintf("invalid request: %v", err)})
 		}
 
-		if user.Email == "" {
+		if userReq.Email == "" {
 			return ctx.Status(400).JSON(fiber.Map{
 				"error": "Invalid request",
 			})
 		}
 
-		if user.Password == "" {
+		if userReq.Password == "" {
 			return ctx.Status(400).JSON(fiber.Map{
 				"error": "Invalid request",
 			})
 		}
 
-		db.Create(&User{})
-
-		hash, err := hashPassword(user.Password)
-		if err != nil {
-			return ctx.Status(500).JSON(fiber.Map{"status": "error", "message": "Couldn't hash password", "data": err})
-		}
-
-		user.Password = hash
+		user := NewUser(userReq)
 		if err := db.Create(&user).Error; err != nil {
 			return ctx.Status(500).JSON(fiber.Map{"status": "error", "message": "Couldn't create user", "data": err})
 		}
 
-		newUser := new(NewUserResponse)
-		newUser.ID = user.Id
-		newUser.Email = user.Email
-
-		return ctx.JSON(fiber.Map{"status": "success", "message": "Created user", "data": newUser})
+		return ctx.JSON(fiber.Map{"status": "success", "message": "Created user", "data": user})
 	})
 
 	api.Get("/auth", func(c *fiber.Ctx) error {
