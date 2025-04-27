@@ -1,0 +1,128 @@
+basePath: /
+host: localhost:8000
+info:
+  contact:
+    email: fiber@swagger.io
+    name: API Support
+  description: This is a sample swagger for Fiber
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Fiber Example API
+  version: "1.0"
+paths:
+  /authorize:
+    get:
+      consumes:
+      - application/json
+      description: Generates an authorization code after validating client_id and
+        response_type
+      parameters:
+      - description: Client ID
+        in: query
+        name: client_id
+        required: true
+        type: string
+      - description: Response Type (must be 'code')
+        in: query
+        name: response_type
+        required: true
+        type: string
+      - description: Redirect URI
+        in: query
+        name: redirect_uri
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "302":
+          description: Redirects with authorization code
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Authorization Endpoint
+      tags:
+      - Authorization
+  /protected:
+    get:
+      consumes:
+      - application/json
+      description: Access a protected resource with a valid access token
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Protected Resource
+      tags:
+      - Protected
+  /token:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: Exchanges an authorization code for an access token
+      parameters:
+      - description: Grant type (must be 'authorization_code')
+        in: formData
+        name: grant_type
+        required: true
+        type: string
+      - description: Authorization code
+        in: formData
+        name: code
+        required: true
+        type: string
+      - description: Redirect URI
+        in: formData
+        name: redirect_uri
+        type: string
+      - description: Client ID
+        in: formData
+        name: client_id
+        type: string
+      - description: Client Secret
+        in: formData
+        name: client_secret
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Token Endpoint
+      tags:
+      - Token
+swagger: "2.0"
