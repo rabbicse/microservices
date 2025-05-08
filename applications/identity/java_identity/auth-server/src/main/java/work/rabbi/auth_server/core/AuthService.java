@@ -5,4 +5,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface AuthService {
     String register(RegisterUserRequest request);
+    LoginResponse login(LoginUserRequest request);
 }
