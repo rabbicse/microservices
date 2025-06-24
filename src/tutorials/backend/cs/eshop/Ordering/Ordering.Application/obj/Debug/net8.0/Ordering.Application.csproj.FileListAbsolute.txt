@@ -1,0 +1,16 @@
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Application\obj\Debug\net8.0\Ordering.Application.csproj.AssemblyReference.cache
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Application\obj\Debug\net8.0\Ordering.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Application\obj\Debug\net8.0\Ordering.Application.AssemblyInfoInputs.cache
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Application\obj\Debug\net8.0\Ordering.Application.AssemblyInfo.cs
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Application\obj\Debug\net8.0\Ordering.Application.csproj.CoreCompileInputs.cache
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Application\obj\Debug\net8.0\Ordering.Application.sourcelink.json
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Application\bin\Debug\net8.0\Ordering.Application.deps.json
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Application\bin\Debug\net8.0\Ordering.Application.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Application\bin\Debug\net8.0\Ordering.Application.pdb
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Application\bin\Debug\net8.0\Ordering.Domain.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Application\bin\Debug\net8.0\Ordering.Domain.pdb
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Application\obj\Debug\net8.0\Ordering.50CBBEA9.Up2Date
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Application\obj\Debug\net8.0\Ordering.Application.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Application\obj\Debug\net8.0\refint\Ordering.Application.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Application\obj\Debug\net8.0\Ordering.Application.pdb
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Application\obj\Debug\net8.0\ref\Ordering.Application.dll

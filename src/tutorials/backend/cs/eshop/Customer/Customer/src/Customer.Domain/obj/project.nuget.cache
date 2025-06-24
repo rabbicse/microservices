@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "jjSpoNm5hIKJbGI35nuPLhe4POb1DIs4KE9sio72bmIJSAqZfsNLkReBoqlW7IRMGLwasWzKRFvLf6HEjeYujw==",
+  "success": true,
+  "projectFilePath": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Customer\\Customer\\src\\Customer.Domain\\KYC.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mehedi\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
+    "C:\\Users\\mehedi\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\mehedi\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

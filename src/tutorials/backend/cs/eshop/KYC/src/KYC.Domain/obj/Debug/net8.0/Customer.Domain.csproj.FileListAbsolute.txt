@@ -1,0 +1,16 @@
+D:\github\microservices\src\tutorials\backend\cs\eshop\Customer\Customer\src\Customer.Domain\bin\Debug\net8.0\Customer.Domain.deps.json
+D:\github\microservices\src\tutorials\backend\cs\eshop\Customer\Customer\src\Customer.Domain\bin\Debug\net8.0\Customer.Domain.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Customer\Customer\src\Customer.Domain\bin\Debug\net8.0\Customer.Domain.pdb
+D:\github\microservices\src\tutorials\backend\cs\eshop\Customer\Customer\src\Customer.Domain\bin\Debug\net8.0\Mehedi.Core.SharedKernel.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Customer\Customer\src\Customer.Domain\bin\Debug\net8.0\Mehedi.Core.SharedKernel.pdb
+D:\github\microservices\src\tutorials\backend\cs\eshop\Customer\Customer\src\Customer.Domain\obj\Debug\net8.0\Customer.Domain.csproj.AssemblyReference.cache
+D:\github\microservices\src\tutorials\backend\cs\eshop\Customer\Customer\src\Customer.Domain\obj\Debug\net8.0\Customer.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\github\microservices\src\tutorials\backend\cs\eshop\Customer\Customer\src\Customer.Domain\obj\Debug\net8.0\Customer.Domain.AssemblyInfoInputs.cache
+D:\github\microservices\src\tutorials\backend\cs\eshop\Customer\Customer\src\Customer.Domain\obj\Debug\net8.0\Customer.Domain.AssemblyInfo.cs
+D:\github\microservices\src\tutorials\backend\cs\eshop\Customer\Customer\src\Customer.Domain\obj\Debug\net8.0\Customer.Domain.csproj.CoreCompileInputs.cache
+D:\github\microservices\src\tutorials\backend\cs\eshop\Customer\Customer\src\Customer.Domain\obj\Debug\net8.0\Customer.Domain.sourcelink.json
+D:\github\microservices\src\tutorials\backend\cs\eshop\Customer\Customer\src\Customer.Domain\obj\Debug\net8.0\Customer.6F9BB792.Up2Date
+D:\github\microservices\src\tutorials\backend\cs\eshop\Customer\Customer\src\Customer.Domain\obj\Debug\net8.0\Customer.Domain.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Customer\Customer\src\Customer.Domain\obj\Debug\net8.0\refint\Customer.Domain.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Customer\Customer\src\Customer.Domain\obj\Debug\net8.0\Customer.Domain.pdb
+D:\github\microservices\src\tutorials\backend\cs\eshop\Customer\Customer\src\Customer.Domain\obj\Debug\net8.0\ref\Customer.Domain.dll

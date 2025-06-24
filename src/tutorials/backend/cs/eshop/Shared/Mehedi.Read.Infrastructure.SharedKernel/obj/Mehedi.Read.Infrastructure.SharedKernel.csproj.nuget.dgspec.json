@@ -1,0 +1,232 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.Read.Infrastructure.SharedKernel\\Mehedi.Read.Infrastructure.SharedKernel.csproj": {}
+  },
+  "projects": {
+    "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.Application.SharedKernel\\Mehedi.Application.SharedKernel.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.Application.SharedKernel\\Mehedi.Application.SharedKernel.csproj",
+        "projectName": "Mehedi.Application.SharedKernel",
+        "projectPath": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.Application.SharedKernel\\Mehedi.Application.SharedKernel.csproj",
+        "packagesPath": "C:\\Users\\mehedi\\.nuget\\packages\\",
+        "outputPath": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.Application.SharedKernel\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\mehedi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.SharedKernel\\Mehedi.Core.SharedKernel.csproj": {
+                "projectPath": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.SharedKernel\\Mehedi.Core.SharedKernel.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.2.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.Read.Infrastructure.SharedKernel\\Mehedi.Read.Infrastructure.SharedKernel.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.Read.Infrastructure.SharedKernel\\Mehedi.Read.Infrastructure.SharedKernel.csproj",
+        "projectName": "Mehedi.Read.Infrastructure.SharedKernel",
+        "projectPath": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.Read.Infrastructure.SharedKernel\\Mehedi.Read.Infrastructure.SharedKernel.csproj",
+        "packagesPath": "C:\\Users\\mehedi\\.nuget\\packages\\",
+        "outputPath": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.Read.Infrastructure.SharedKernel\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\mehedi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.Application.SharedKernel\\Mehedi.Application.SharedKernel.csproj": {
+                "projectPath": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.Application.SharedKernel\\Mehedi.Application.SharedKernel.csproj"
+              },
+              "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.SharedKernel\\Mehedi.Core.SharedKernel.csproj": {
+                "projectPath": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.SharedKernel\\Mehedi.Core.SharedKernel.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.SharedKernel\\Mehedi.Core.SharedKernel.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.SharedKernel\\Mehedi.Core.SharedKernel.csproj",
+        "projectName": "Mehedi.Core.SharedKernel",
+        "projectPath": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.SharedKernel\\Mehedi.Core.SharedKernel.csproj",
+        "packagesPath": "C:\\Users\\mehedi\\.nuget\\packages\\",
+        "outputPath": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.SharedKernel\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\mehedi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Ordering\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1B2232C4-999A-4E0F-8545-D7A009D4122A}|Ordering.Domain\\Ordering.Domain.csproj|d:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\ordering\\ordering.domain\\aggregates\\orderaggregate\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B2232C4-999A-4E0F-8545-D7A009D4122A}|Ordering.Domain\\Ordering.Domain.csproj|solutionrelative:ordering.domain\\aggregates\\orderaggregate\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B2232C4-999A-4E0F-8545-D7A009D4122A}|Ordering.Domain\\Ordering.Domain.csproj|d:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\ordering\\ordering.domain\\events\\orderstatuschangedtoawaitingvalidationdomainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B2232C4-999A-4E0F-8545-D7A009D4122A}|Ordering.Domain\\Ordering.Domain.csproj|solutionrelative:ordering.domain\\events\\orderstatuschangedtoawaitingvalidationdomainevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0072569E-BADD-4DE9-8494-8EE3946EF3D5}|Mehedi.SharedKernel\\Mehedi.Core.SharedKernel.csproj|d:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\ordering\\mehedi.sharedkernel\\baseevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0072569E-BADD-4DE9-8494-8EE3946EF3D5}|Mehedi.SharedKernel\\Mehedi.Core.SharedKernel.csproj|solutionrelative:mehedi.sharedkernel\\baseevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0072569E-BADD-4DE9-8494-8EE3946EF3D5}|Mehedi.SharedKernel\\Mehedi.Core.SharedKernel.csproj|d:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\ordering\\mehedi.sharedkernel\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0072569E-BADD-4DE9-8494-8EE3946EF3D5}|Mehedi.SharedKernel\\Mehedi.Core.SharedKernel.csproj|solutionrelative:mehedi.sharedkernel\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0072569E-BADD-4DE9-8494-8EE3946EF3D5}|Mehedi.SharedKernel\\Mehedi.Core.SharedKernel.csproj|d:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\ordering\\mehedi.sharedkernel\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0072569E-BADD-4DE9-8494-8EE3946EF3D5}|Mehedi.SharedKernel\\Mehedi.Core.SharedKernel.csproj|solutionrelative:mehedi.sharedkernel\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BaseEvent.cs",
+              "DocumentMoniker": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Ordering\\Mehedi.SharedKernel\\BaseEvent.cs",
+              "RelativeDocumentMoniker": "Mehedi.SharedKernel\\BaseEvent.cs",
+              "ToolTip": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Ordering\\Mehedi.SharedKernel\\BaseEvent.cs",
+              "RelativeToolTip": "Mehedi.SharedKernel\\BaseEvent.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-14T05:56:11.009Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OrderStatusChangedToAwaitingValidationDomainEvent.cs",
+              "DocumentMoniker": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Ordering\\Ordering.Domain\\Events\\OrderStatusChangedToAwaitingValidationDomainEvent.cs",
+              "RelativeDocumentMoniker": "Ordering.Domain\\Events\\OrderStatusChangedToAwaitingValidationDomainEvent.cs",
+              "ToolTip": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Ordering\\Ordering.Domain\\Events\\OrderStatusChangedToAwaitingValidationDomainEvent.cs",
+              "RelativeToolTip": "Ordering.Domain\\Events\\OrderStatusChangedToAwaitingValidationDomainEvent.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-14T05:51:36.518Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Order.cs",
+              "DocumentMoniker": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Ordering\\Ordering.Domain\\Aggregates\\OrderAggregate\\Order.cs",
+              "RelativeDocumentMoniker": "Ordering.Domain\\Aggregates\\OrderAggregate\\Order.cs",
+              "ToolTip": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Ordering\\Ordering.Domain\\Aggregates\\OrderAggregate\\Order.cs",
+              "RelativeToolTip": "Ordering.Domain\\Aggregates\\OrderAggregate\\Order.cs",
+              "ViewState": "AQIAAJ0AAAAAAAAAAAAQwDoAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-14T05:26:56.817Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IUnitOfWork.cs",
+              "DocumentMoniker": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Ordering\\Mehedi.SharedKernel\\IUnitOfWork.cs",
+              "RelativeDocumentMoniker": "Mehedi.SharedKernel\\IUnitOfWork.cs",
+              "ToolTip": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Ordering\\Mehedi.SharedKernel\\IUnitOfWork.cs",
+              "RelativeToolTip": "Mehedi.SharedKernel\\IUnitOfWork.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-14T05:25:03.026Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Ordering\\Mehedi.SharedKernel\\IRepository.cs",
+              "RelativeDocumentMoniker": "Mehedi.SharedKernel\\IRepository.cs",
+              "ToolTip": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Ordering\\Mehedi.SharedKernel\\IRepository.cs",
+              "RelativeToolTip": "Mehedi.SharedKernel\\IRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-14T05:24:46.882Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

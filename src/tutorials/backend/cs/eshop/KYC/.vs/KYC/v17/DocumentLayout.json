@@ -1,0 +1,245 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\KYC\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EFC766A2-F07F-43E2-ABAD-9C5588ABF273}|..\\Shared\\Mehedi.SharedKernel\\Mehedi.Core.SharedKernel.csproj|d:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\shared\\mehedi.sharedkernel\\iquerymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFC766A2-F07F-43E2-ABAD-9C5588ABF273}|..\\Shared\\Mehedi.SharedKernel\\Mehedi.Core.SharedKernel.csproj|d:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\shared\\mehedi.sharedkernel\\valueobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFC766A2-F07F-43E2-ABAD-9C5588ABF273}|..\\Shared\\Mehedi.SharedKernel\\Mehedi.Core.SharedKernel.csproj|d:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\shared\\mehedi.sharedkernel\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFC766A2-F07F-43E2-ABAD-9C5588ABF273}|..\\Shared\\Mehedi.SharedKernel\\Mehedi.Core.SharedKernel.csproj|d:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\shared\\mehedi.sharedkernel\\iaggregateroot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFC766A2-F07F-43E2-ABAD-9C5588ABF273}|..\\Shared\\Mehedi.SharedKernel\\Mehedi.Core.SharedKernel.csproj|d:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\shared\\mehedi.sharedkernel\\enumeration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1EF01846-6E1A-4175-B7B5-7C273D70A4F4}|src\\KYC.Application\\KYC.Application.csproj|d:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\kyc\\src\\kyc.application\\usecases\\customers\\queries\\getallcustomerqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EF01846-6E1A-4175-B7B5-7C273D70A4F4}|src\\KYC.Application\\KYC.Application.csproj|solutionrelative:src\\kyc.application\\usecases\\customers\\queries\\getallcustomerqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08747EDF-A939-4C47-ABE5-99B30EC04F39}|src\\KYC.Read.Infrastructure\\KYC.Read.Infrastructure.csproj|d:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\kyc\\src\\kyc.read.infrastructure\\eventhandlers\\customereventhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08747EDF-A939-4C47-ABE5-99B30EC04F39}|src\\KYC.Read.Infrastructure\\KYC.Read.Infrastructure.csproj|solutionrelative:src\\kyc.read.infrastructure\\eventhandlers\\customereventhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C55D21B7-A763-430A-8A8E-256F250F3E4B}|src\\KYC.RedisCache.Infrastructure\\KYC.RedisCache.Infrastructure.csproj|d:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\kyc\\src\\kyc.rediscache.infrastructure\\services\\distributedcacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C55D21B7-A763-430A-8A8E-256F250F3E4B}|src\\KYC.RedisCache.Infrastructure\\KYC.RedisCache.Infrastructure.csproj|solutionrelative:src\\kyc.rediscache.infrastructure\\services\\distributedcacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D73E431A-0EA3-4E33-9469-C01E308C2AA1}|src\\KYC.API\\KYC.API.csproj|d:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\kyc\\src\\kyc.api\\controllers\\customerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D73E431A-0EA3-4E33-9469-C01E308C2AA1}|src\\KYC.API\\KYC.API.csproj|solutionrelative:src\\kyc.api\\controllers\\customerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D73E431A-0EA3-4E33-9469-C01E308C2AA1}|src\\KYC.API\\KYC.API.csproj|d:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\kyc\\src\\kyc.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D73E431A-0EA3-4E33-9469-C01E308C2AA1}|src\\KYC.API\\KYC.API.csproj|solutionrelative:src\\kyc.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1EF01846-6E1A-4175-B7B5-7C273D70A4F4}|src\\KYC.Application\\KYC.Application.csproj|d:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\kyc\\src\\kyc.application\\usecases\\customers\\queries\\getallcustomerquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EF01846-6E1A-4175-B7B5-7C273D70A4F4}|src\\KYC.Application\\KYC.Application.csproj|solutionrelative:src\\kyc.application\\usecases\\customers\\queries\\getallcustomerquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C55D21B7-A763-430A-8A8E-256F250F3E4B}|src\\KYC.RedisCache.Infrastructure\\KYC.RedisCache.Infrastructure.csproj|d:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\kyc\\src\\kyc.rediscache.infrastructure\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C55D21B7-A763-430A-8A8E-256F250F3E4B}|src\\KYC.RedisCache.Infrastructure\\KYC.RedisCache.Infrastructure.csproj|solutionrelative:src\\kyc.rediscache.infrastructure\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C55D21B7-A763-430A-8A8E-256F250F3E4B}|src\\KYC.RedisCache.Infrastructure\\KYC.RedisCache.Infrastructure.csproj|d:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\kyc\\src\\kyc.rediscache.infrastructure\\services\\cacheoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C55D21B7-A763-430A-8A8E-256F250F3E4B}|src\\KYC.RedisCache.Infrastructure\\KYC.RedisCache.Infrastructure.csproj|solutionrelative:src\\kyc.rediscache.infrastructure\\services\\cacheoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D73E431A-0EA3-4E33-9469-C01E308C2AA1}|src\\KYC.API\\KYC.API.csproj|d:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\kyc\\src\\kyc.api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D73E431A-0EA3-4E33-9469-C01E308C2AA1}|src\\KYC.API\\KYC.API.csproj|solutionrelative:src\\kyc.api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ValueObject.cs",
+              "DocumentMoniker": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.SharedKernel\\ValueObject.cs",
+              "RelativeDocumentMoniker": "..\\Shared\\Mehedi.SharedKernel\\ValueObject.cs",
+              "ToolTip": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.SharedKernel\\ValueObject.cs",
+              "RelativeToolTip": "..\\Shared\\Mehedi.SharedKernel\\ValueObject.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAQwCcAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-02T05:44:31.933Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IUnitOfWork.cs",
+              "DocumentMoniker": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.SharedKernel\\IUnitOfWork.cs",
+              "RelativeDocumentMoniker": "..\\Shared\\Mehedi.SharedKernel\\IUnitOfWork.cs",
+              "ToolTip": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.SharedKernel\\IUnitOfWork.cs",
+              "RelativeToolTip": "..\\Shared\\Mehedi.SharedKernel\\IUnitOfWork.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-02T05:44:17.681Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IQueryModel.cs",
+              "DocumentMoniker": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.SharedKernel\\IQueryModel.cs",
+              "RelativeDocumentMoniker": "..\\Shared\\Mehedi.SharedKernel\\IQueryModel.cs",
+              "ToolTip": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.SharedKernel\\IQueryModel.cs",
+              "RelativeToolTip": "..\\Shared\\Mehedi.SharedKernel\\IQueryModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAABHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-02T05:44:13.559Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IAggregateRoot.cs",
+              "DocumentMoniker": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.SharedKernel\\IAggregateRoot.cs",
+              "RelativeDocumentMoniker": "..\\Shared\\Mehedi.SharedKernel\\IAggregateRoot.cs",
+              "ToolTip": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.SharedKernel\\IAggregateRoot.cs",
+              "RelativeToolTip": "..\\Shared\\Mehedi.SharedKernel\\IAggregateRoot.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-02T05:44:09.48Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Enumeration.cs",
+              "DocumentMoniker": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.SharedKernel\\Enumeration.cs",
+              "RelativeDocumentMoniker": "..\\Shared\\Mehedi.SharedKernel\\Enumeration.cs",
+              "ToolTip": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.SharedKernel\\Enumeration.cs",
+              "RelativeToolTip": "..\\Shared\\Mehedi.SharedKernel\\Enumeration.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAAwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-02T05:31:42.539Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CustomersController.cs",
+              "DocumentMoniker": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\KYC\\src\\KYC.API\\Controllers\\CustomersController.cs",
+              "RelativeDocumentMoniker": "src\\KYC.API\\Controllers\\CustomersController.cs",
+              "ToolTip": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\KYC\\src\\KYC.API\\Controllers\\CustomersController.cs",
+              "RelativeToolTip": "src\\KYC.API\\Controllers\\CustomersController.cs",
+              "ViewState": "AQIAAEkAAAAAAAAAAAAQwHUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T09:38:19.054Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GetAllCustomerQueryHandler.cs",
+              "DocumentMoniker": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\KYC\\src\\KYC.Application\\UseCases\\Customers\\Queries\\GetAllCustomerQueryHandler.cs",
+              "RelativeDocumentMoniker": "src\\KYC.Application\\UseCases\\Customers\\Queries\\GetAllCustomerQueryHandler.cs",
+              "ToolTip": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\KYC\\src\\KYC.Application\\UseCases\\Customers\\Queries\\GetAllCustomerQueryHandler.cs",
+              "RelativeToolTip": "src\\KYC.Application\\UseCases\\Customers\\Queries\\GetAllCustomerQueryHandler.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAABdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T09:35:55.733Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CacheOptions.cs",
+              "DocumentMoniker": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\KYC\\src\\KYC.RedisCache.Infrastructure\\Services\\CacheOptions.cs",
+              "RelativeDocumentMoniker": "src\\KYC.RedisCache.Infrastructure\\Services\\CacheOptions.cs",
+              "ToolTip": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\KYC\\src\\KYC.RedisCache.Infrastructure\\Services\\CacheOptions.cs",
+              "RelativeToolTip": "src\\KYC.RedisCache.Infrastructure\\Services\\CacheOptions.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T08:25:51.672Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DistributedCacheService.cs",
+              "DocumentMoniker": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\KYC\\src\\KYC.RedisCache.Infrastructure\\Services\\DistributedCacheService.cs",
+              "RelativeDocumentMoniker": "src\\KYC.RedisCache.Infrastructure\\Services\\DistributedCacheService.cs",
+              "ToolTip": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\KYC\\src\\KYC.RedisCache.Infrastructure\\Services\\DistributedCacheService.cs",
+              "RelativeToolTip": "src\\KYC.RedisCache.Infrastructure\\Services\\DistributedCacheService.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAawBUAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T08:11:41.839Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\KYC\\src\\KYC.API\\Program.cs",
+              "RelativeDocumentMoniker": "src\\KYC.API\\Program.cs",
+              "ToolTip": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\KYC\\src\\KYC.API\\Program.cs",
+              "RelativeToolTip": "src\\KYC.API\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T08:07:04.022Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "DependencyInjection.cs",
+              "DocumentMoniker": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\KYC\\src\\KYC.RedisCache.Infrastructure\\DependencyInjection.cs",
+              "RelativeDocumentMoniker": "src\\KYC.RedisCache.Infrastructure\\DependencyInjection.cs",
+              "ToolTip": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\KYC\\src\\KYC.RedisCache.Infrastructure\\DependencyInjection.cs",
+              "RelativeToolTip": "src\\KYC.RedisCache.Infrastructure\\DependencyInjection.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T06:33:07.119Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CustomerEventHandler.cs",
+              "DocumentMoniker": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\KYC\\src\\KYC.Read.Infrastructure\\EventHandlers\\CustomerEventHandler.cs",
+              "RelativeDocumentMoniker": "src\\KYC.Read.Infrastructure\\EventHandlers\\CustomerEventHandler.cs",
+              "ToolTip": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\KYC\\src\\KYC.Read.Infrastructure\\EventHandlers\\CustomerEventHandler.cs",
+              "RelativeToolTip": "src\\KYC.Read.Infrastructure\\EventHandlers\\CustomerEventHandler.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAACgAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T04:00:18.308Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "GetAllCustomerQuery.cs",
+              "DocumentMoniker": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\KYC\\src\\KYC.Application\\UseCases\\Customers\\Queries\\GetAllCustomerQuery.cs",
+              "RelativeDocumentMoniker": "src\\KYC.Application\\UseCases\\Customers\\Queries\\GetAllCustomerQuery.cs",
+              "ToolTip": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\KYC\\src\\KYC.Application\\UseCases\\Customers\\Queries\\GetAllCustomerQuery.cs",
+              "RelativeToolTip": "src\\KYC.Application\\UseCases\\Customers\\Queries\\GetAllCustomerQuery.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T09:31:38.942Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\KYC\\src\\KYC.API\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "src\\KYC.API\\appsettings.Development.json",
+              "ToolTip": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\KYC\\src\\KYC.API\\appsettings.Development.json",
+              "RelativeToolTip": "src\\KYC.API\\appsettings.Development.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-04-30T06:09:32.669Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

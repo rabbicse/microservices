@@ -1,0 +1,13 @@
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Read.Infrastructure\bin\Debug\net8.0\Ordering.Read.Infrastructure.deps.json
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Read.Infrastructure\bin\Debug\net8.0\Ordering.Read.Infrastructure.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Read.Infrastructure\bin\Debug\net8.0\Ordering.Read.Infrastructure.pdb
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Read.Infrastructure\obj\Debug\net8.0\Ordering.Read.Infrastructure.csproj.AssemblyReference.cache
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Read.Infrastructure\obj\Debug\net8.0\Ordering.Read.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Read.Infrastructure\obj\Debug\net8.0\Ordering.Read.Infrastructure.AssemblyInfoInputs.cache
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Read.Infrastructure\obj\Debug\net8.0\Ordering.Read.Infrastructure.AssemblyInfo.cs
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Read.Infrastructure\obj\Debug\net8.0\Ordering.Read.Infrastructure.csproj.CoreCompileInputs.cache
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Read.Infrastructure\obj\Debug\net8.0\Ordering.Read.Infrastructure.sourcelink.json
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Read.Infrastructure\obj\Debug\net8.0\Ordering.Read.Infrastructure.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Read.Infrastructure\obj\Debug\net8.0\refint\Ordering.Read.Infrastructure.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Read.Infrastructure\obj\Debug\net8.0\Ordering.Read.Infrastructure.pdb
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Read.Infrastructure\obj\Debug\net8.0\ref\Ordering.Read.Infrastructure.dll

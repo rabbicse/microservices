@@ -1,0 +1,13 @@
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.SharedKernel\bin\Debug\net8.0\Mehedi.Core.SharedKernel.deps.json
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.SharedKernel\bin\Debug\net8.0\Mehedi.Core.SharedKernel.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.SharedKernel\bin\Debug\net8.0\Mehedi.Core.SharedKernel.pdb
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.SharedKernel\obj\Debug\net8.0\Mehedi.Core.SharedKernel.csproj.AssemblyReference.cache
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.SharedKernel\obj\Debug\net8.0\Mehedi.Core.SharedKernel.GeneratedMSBuildEditorConfig.editorconfig
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.SharedKernel\obj\Debug\net8.0\Mehedi.Core.SharedKernel.AssemblyInfoInputs.cache
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.SharedKernel\obj\Debug\net8.0\Mehedi.Core.SharedKernel.AssemblyInfo.cs
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.SharedKernel\obj\Debug\net8.0\Mehedi.Core.SharedKernel.csproj.CoreCompileInputs.cache
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.SharedKernel\obj\Debug\net8.0\Mehedi.Core.SharedKernel.sourcelink.json
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.SharedKernel\obj\Debug\net8.0\Mehedi.Core.SharedKernel.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.SharedKernel\obj\Debug\net8.0\refint\Mehedi.Core.SharedKernel.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.SharedKernel\obj\Debug\net8.0\Mehedi.Core.SharedKernel.pdb
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.SharedKernel\obj\Debug\net8.0\ref\Mehedi.Core.SharedKernel.dll

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "lz6Tr6AI6Xtre7ThQjqqGg432YsClRVbNZAIXa039C3E9jJQ495B1d/maw65eXWm+HyzrUx7Eic1Pd57cslJeA==",
+  "success": true,
+  "projectFilePath": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\KYC\\tests\\Demo\\Demo.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mehedi\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,87 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Catalog\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F1EFC979-809E-4C55-BD86-90209FC4DEDF}|Catalog.Domain\\Catalog.Domain.csproj|d:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\catalog\\catalog.domain\\exceptions\\catalogdomainexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1EFC979-809E-4C55-BD86-90209FC4DEDF}|Catalog.Domain\\Catalog.Domain.csproj|solutionrelative:catalog.domain\\exceptions\\catalogdomainexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1EFC979-809E-4C55-BD86-90209FC4DEDF}|Catalog.Domain\\Catalog.Domain.csproj|d:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\catalog\\catalog.domain\\aggregates\\catalogitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1EFC979-809E-4C55-BD86-90209FC4DEDF}|Catalog.Domain\\Catalog.Domain.csproj|solutionrelative:catalog.domain\\aggregates\\catalogitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1EFC979-809E-4C55-BD86-90209FC4DEDF}|Catalog.Domain\\Catalog.Domain.csproj|d:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\catalog\\catalog.domain\\common\\baseevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1EFC979-809E-4C55-BD86-90209FC4DEDF}|Catalog.Domain\\Catalog.Domain.csproj|solutionrelative:catalog.domain\\common\\baseevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1EFC979-809E-4C55-BD86-90209FC4DEDF}|Catalog.Domain\\Catalog.Domain.csproj|d:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\catalog\\catalog.domain\\events\\catalogitemcreatedevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1EFC979-809E-4C55-BD86-90209FC4DEDF}|Catalog.Domain\\Catalog.Domain.csproj|solutionrelative:catalog.domain\\events\\catalogitemcreatedevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CatalogDomainException.cs",
+              "DocumentMoniker": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Catalog\\Catalog.Domain\\Exceptions\\CatalogDomainException.cs",
+              "RelativeDocumentMoniker": "Catalog.Domain\\Exceptions\\CatalogDomainException.cs",
+              "ToolTip": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Catalog\\Catalog.Domain\\Exceptions\\CatalogDomainException.cs",
+              "RelativeToolTip": "Catalog.Domain\\Exceptions\\CatalogDomainException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-28T08:59:07.287Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BaseEvent.cs",
+              "DocumentMoniker": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Catalog\\Catalog.Domain\\Common\\BaseEvent.cs",
+              "RelativeDocumentMoniker": "Catalog.Domain\\Common\\BaseEvent.cs",
+              "ToolTip": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Catalog\\Catalog.Domain\\Common\\BaseEvent.cs",
+              "RelativeToolTip": "Catalog.Domain\\Common\\BaseEvent.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-27T10:53:26.515Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CatalogItemCreatedEvent.cs",
+              "DocumentMoniker": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Catalog\\Catalog.Domain\\Events\\CatalogItemCreatedEvent.cs",
+              "RelativeDocumentMoniker": "Catalog.Domain\\Events\\CatalogItemCreatedEvent.cs",
+              "ToolTip": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Catalog\\Catalog.Domain\\Events\\CatalogItemCreatedEvent.cs",
+              "RelativeToolTip": "Catalog.Domain\\Events\\CatalogItemCreatedEvent.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-27T10:49:04.491Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CatalogItem.cs",
+              "DocumentMoniker": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Catalog\\Catalog.Domain\\Aggregates\\CatalogItem.cs",
+              "RelativeDocumentMoniker": "Catalog.Domain\\Aggregates\\CatalogItem.cs",
+              "ToolTip": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Catalog\\Catalog.Domain\\Aggregates\\CatalogItem.cs",
+              "RelativeToolTip": "Catalog.Domain\\Aggregates\\CatalogItem.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAzwBwAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-27T10:32:20.247Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

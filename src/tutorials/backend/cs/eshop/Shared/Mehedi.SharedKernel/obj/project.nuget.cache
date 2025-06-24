@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "eCdijm/qXLg+1Aqu677zJ5DpeSfG2ldpBe3T1Job7mtG3jtRm8H6jgEn11I3x7R/NCuRGPdduvngNtGLr4X78Q==",
+  "success": true,
+  "projectFilePath": "D:\\github\\microservices\\src\\tutorials\\backend\\cs\\eshop\\Shared\\Mehedi.SharedKernel\\Mehedi.Core.SharedKernel.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mehedi\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
+    "C:\\Users\\mehedi\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\mehedi\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

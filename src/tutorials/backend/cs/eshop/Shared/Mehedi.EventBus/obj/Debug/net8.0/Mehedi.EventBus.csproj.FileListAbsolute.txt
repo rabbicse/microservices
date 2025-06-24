@@ -1,0 +1,12 @@
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus\bin\Debug\net8.0\Mehedi.EventBus.deps.json
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus\bin\Debug\net8.0\Mehedi.EventBus.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus\bin\Debug\net8.0\Mehedi.EventBus.pdb
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus\obj\Debug\net8.0\Mehedi.EventBus.GeneratedMSBuildEditorConfig.editorconfig
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus\obj\Debug\net8.0\Mehedi.EventBus.AssemblyInfoInputs.cache
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus\obj\Debug\net8.0\Mehedi.EventBus.AssemblyInfo.cs
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus\obj\Debug\net8.0\Mehedi.EventBus.csproj.CoreCompileInputs.cache
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus\obj\Debug\net8.0\Mehedi.EventBus.sourcelink.json
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus\obj\Debug\net8.0\Mehedi.EventBus.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus\obj\Debug\net8.0\refint\Mehedi.EventBus.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus\obj\Debug\net8.0\Mehedi.EventBus.pdb
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus\obj\Debug\net8.0\ref\Mehedi.EventBus.dll

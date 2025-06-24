@@ -1,0 +1,16 @@
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.Application.SharedKernel\bin\Debug\net8.0\Mehedi.Application.SharedKernel.deps.json
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.Application.SharedKernel\bin\Debug\net8.0\Mehedi.Application.SharedKernel.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.Application.SharedKernel\bin\Debug\net8.0\Mehedi.Application.SharedKernel.pdb
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.Application.SharedKernel\bin\Debug\net8.0\Mehedi.Core.SharedKernel.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.Application.SharedKernel\bin\Debug\net8.0\Mehedi.Core.SharedKernel.pdb
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.Application.SharedKernel\obj\Debug\net8.0\Mehedi.Application.SharedKernel.csproj.AssemblyReference.cache
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.Application.SharedKernel\obj\Debug\net8.0\Mehedi.Application.SharedKernel.GeneratedMSBuildEditorConfig.editorconfig
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.Application.SharedKernel\obj\Debug\net8.0\Mehedi.Application.SharedKernel.AssemblyInfoInputs.cache
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.Application.SharedKernel\obj\Debug\net8.0\Mehedi.Application.SharedKernel.AssemblyInfo.cs
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.Application.SharedKernel\obj\Debug\net8.0\Mehedi.Application.SharedKernel.csproj.CoreCompileInputs.cache
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.Application.SharedKernel\obj\Debug\net8.0\Mehedi.Application.SharedKernel.sourcelink.json
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.Application.SharedKernel\obj\Debug\net8.0\Mehedi.A.D66D9050.Up2Date
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.Application.SharedKernel\obj\Debug\net8.0\Mehedi.Application.SharedKernel.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.Application.SharedKernel\obj\Debug\net8.0\refint\Mehedi.Application.SharedKernel.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.Application.SharedKernel\obj\Debug\net8.0\Mehedi.Application.SharedKernel.pdb
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.Application.SharedKernel\obj\Debug\net8.0\ref\Mehedi.Application.SharedKernel.dll

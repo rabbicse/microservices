@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "W1y8sBAFud2kKVn8ITP+SsQIO06dY8nIJ2XPMJIEvEY=",
+  "Source": "KYC.API",
+  "BasePath": "_content/KYC.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

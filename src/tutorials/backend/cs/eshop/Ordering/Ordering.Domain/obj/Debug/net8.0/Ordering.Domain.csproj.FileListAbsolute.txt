@@ -1,0 +1,13 @@
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Domain\bin\Debug\net8.0\Ordering.Domain.deps.json
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Domain\bin\Debug\net8.0\Ordering.Domain.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Domain\bin\Debug\net8.0\Ordering.Domain.pdb
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Domain\obj\Debug\net8.0\Ordering.Domain.csproj.AssemblyReference.cache
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Domain\obj\Debug\net8.0\Ordering.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Domain\obj\Debug\net8.0\Ordering.Domain.AssemblyInfoInputs.cache
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Domain\obj\Debug\net8.0\Ordering.Domain.AssemblyInfo.cs
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Domain\obj\Debug\net8.0\Ordering.Domain.csproj.CoreCompileInputs.cache
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Domain\obj\Debug\net8.0\Ordering.Domain.sourcelink.json
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Domain\obj\Debug\net8.0\Ordering.Domain.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Domain\obj\Debug\net8.0\refint\Ordering.Domain.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Domain\obj\Debug\net8.0\Ordering.Domain.pdb
+D:\github\microservices\src\tutorials\backend\cs\eshop\Ordering\Ordering.Domain\obj\Debug\net8.0\ref\Ordering.Domain.dll

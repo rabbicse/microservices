@@ -1,0 +1,16 @@
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus.Kafka\bin\Debug\net8.0\Mehedi.EventBus.Kafka.deps.json
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus.Kafka\bin\Debug\net8.0\Mehedi.EventBus.Kafka.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus.Kafka\bin\Debug\net8.0\Mehedi.EventBus.Kafka.pdb
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus.Kafka\bin\Debug\net8.0\Mehedi.EventBus.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus.Kafka\bin\Debug\net8.0\Mehedi.EventBus.pdb
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus.Kafka\obj\Debug\net8.0\Mehedi.EventBus.Kafka.csproj.AssemblyReference.cache
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus.Kafka\obj\Debug\net8.0\Mehedi.EventBus.Kafka.GeneratedMSBuildEditorConfig.editorconfig
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus.Kafka\obj\Debug\net8.0\Mehedi.EventBus.Kafka.AssemblyInfoInputs.cache
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus.Kafka\obj\Debug\net8.0\Mehedi.EventBus.Kafka.AssemblyInfo.cs
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus.Kafka\obj\Debug\net8.0\Mehedi.EventBus.Kafka.csproj.CoreCompileInputs.cache
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus.Kafka\obj\Debug\net8.0\Mehedi.EventBus.Kafka.sourcelink.json
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus.Kafka\obj\Debug\net8.0\Mehedi.E.CF883878.Up2Date
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus.Kafka\obj\Debug\net8.0\Mehedi.EventBus.Kafka.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus.Kafka\obj\Debug\net8.0\refint\Mehedi.EventBus.Kafka.dll
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus.Kafka\obj\Debug\net8.0\Mehedi.EventBus.Kafka.pdb
+D:\github\microservices\src\tutorials\backend\cs\eshop\Shared\Mehedi.EventBus.Kafka\obj\Debug\net8.0\ref\Mehedi.EventBus.Kafka.dll
